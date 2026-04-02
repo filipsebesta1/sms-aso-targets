@@ -32,20 +32,20 @@
 <section>
   <div class="summary-ribbon">
     <div class="stat-box">
-      <div class="value">{{ targets|length }}</div>
-      <div class="label">ranked uORF targets (AUG + near-cognate)</div>
+      <div class="value">{{ all_viable|length }}</div>
+      <div class="label">viable targets across all mechanisms</div>
     </div>
     <div class="stat-box">
-      <div class="value">{{ targets|selectattr('target_type', 'equalto', 'AUG_uORF')|list|length }}</div>
-      <div class="label">AUG-initiated uORFs</div>
-    </div>
-    <div class="stat-box">
-      <div class="value">{{ targets|selectattr('target_type', 'equalto', 'near_cognate_uORF')|list|length }}</div>
-      <div class="label">near-cognate uORFs (Ribo-seq validated)</div>
+      <div class="value">{{ all_viable|selectattr('tier', 'equalto', 1)|list|length }}</div>
+      <div class="label">Tier 1 (primary candidates)</div>
     </div>
     <div class="stat-box">
       <div class="value">8</div>
-      <div class="label">mechanisms evaluated (4 viable, 4 ruled out)</div>
+      <div class="label">mechanisms evaluated</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">4</div>
+      <div class="label">mechanisms ruled out</div>
     </div>
   </div>
 </section>
