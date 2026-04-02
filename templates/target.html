@@ -18,6 +18,8 @@
         <h1>{{ target.id }}
           {% if target.triage_verdict == 'canonical' %}
             <span class="badge badge-canonical">CANONICAL &mdash; PRIMARY TARGET</span>
+          {% elif target.triage_verdict == 'canonical_utr' %}
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
           {% elif target.triage_verdict == 'shared_with_canonical' %}
             <span class="badge badge-shared">SHARED WITH CANONICAL</span>
           {% else %}
@@ -50,7 +52,7 @@
   <h2>5&prime;UTR Genome Track</h2>
   <div class="genome-viewer" id="utr-track"></div>
   <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
-    UTR length: {{ target.utr_len }} bp &middot; GC content: {{ target.utr_gc }}% &middot;
+    UTR length: {{ target.utr_len }} bp {% if target.utr_gc > 0 %}&middot; GC content: {{ target.utr_gc }}% {% endif %}&middot;
     uAUG at position {{ target.uaug_pos }} &middot; Stop at {{ target.stop_pos }}
   </div>
 </section>

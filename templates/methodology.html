@@ -181,6 +181,30 @@ Ensembl REST ──▶ Transcript inventory ──▶ 5'UTR extraction ──▶
 </section>
 
 <section>
+  <h2>Step 16: ASO Candidate Design</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>For each target position (all 12 uORFs + structure hotspots), candidate ASO sequences are designed by extracting the mRNA target region at multiple lengths (16, 18, 20 nt) and offsets (&plusmn;4 nt), computing the reverse complement, and scoring each candidate.</p>
+    <p style="margin-top:8px;"><strong>Scoring (ViennaRNA):</strong> Each ASO is scored by: (1) duplex binding MFE (ASO-target, more negative = stronger), (2) self-folding MFE (ASO alone, less negative = better), and (3) GC content penalty (optimal ~50-55%).</p>
+    <p style="margin-top:8px;"><strong>Quality formula:</strong> <code>quality = (-duplex_mfe / length) - gc_penalty - self_fold_penalty</code></p>
+    <p style="margin-top:8px;"><strong>Flags:</strong> Candidates are flagged for: <code>high_GC</code> (&gt;75%), <code>self_folding</code> (MFE &lt; -5 kcal/mol), <code>homopolymer</code> (&ge;5 identical bases), <code>G4_risk</code> (GGGG or CCCC run). Unflagged candidates are labeled "clean."</p>
+    <p style="margin-top:8px;"><strong>Designability score:</strong> The fraction of clean candidates for each target position. This is the 5th component of the composite score (weight 1/8). Targets with zero clean candidates are penalized but not eliminated, as modified ASO chemistries may overcome design challenges.</p>
+    <p style="margin-top:8px;"><strong>Chemistry:</strong> Steric blocking ASOs (fully modified 2&prime;-O-Me or LNA/2&prime;-O-Me mixmer, phosphorothioate backbone). NOT gapmers, which would recruit RNase H and degrade the mRNA.</p>
+    <p style="margin-top:8px;"><strong>Important:</strong> Off-target analysis (BLAST against the transcriptome) is NOT included in this pipeline. It is a required step before experimental use.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step Numbering Note</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p style="font-size:13px; color:var(--text-muted);">
+      The pipeline has 16 steps. Steps 1-6 cover initial data gathering (transcripts, uORFs, triage, Ribo-seq, conservation, NAT overlap, expression, eQTL).
+      Step 7 generates the decision memo. Steps 8-16 are extended analyses added iteratively: non-AUG uORFs (8), NMD/poison exons (9), 5&prime;UTR structure (10), miRNA (11), G-quadruplex (12), 3&prime;UTR structure (13), RBP sites (14), polyadenylation (15), and ASO design (16).
+      Steps 7 and 9 are not shown separately above because step 7 is a report generator (not an analysis) and step 9 results are displayed in the NMD section on the dashboard.
+    </p>
+  </div>
+</section>
+
+<section>
   <h2>Traffic Light Thresholds</h2>
   <div class="card">
     <table>

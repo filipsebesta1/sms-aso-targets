@@ -57,7 +57,8 @@
       "Bash(git commit -m \"Add unified All Viable Targets table across all mechanisms:*)",
       "Bash(git commit -m \"Sort All Viable Targets table by tier \\(pre-sorted in build script\\):*)",
       "Bash(git commit -m \"Update hero stat boxes to reflect all mechanisms:*)",
-      "Bash(git commit -m \"Clarify hero card: ''''distinct targets'''' not ''''viable targets'''':*)"
+      "Bash(git commit -m \"Clarify hero card: ''''distinct targets'''' not ''''viable targets'''':*)",
+      "Bash(git commit -m \"Fix 5 audit issues: canonical_utr badge, GC display, Step 16 docs, ASO dedup, base editor note:*)"
     ]
   }
 }

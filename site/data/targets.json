@@ -268,16 +268,6 @@
         "target_seq": "AGGATCTCATCTGGCCACCG"
       },
       {
-        "seq": "CGGTGGCCAGATGAGATCCT",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -41.0,
-        "self_mfe": 0.0,
-        "quality": 1.9,
-        "flags": "",
-        "target_seq": "AGGATCTCATCTGGCCACCG"
-      },
-      {
         "seq": "GGTGGCCAGATGAGATCC",
         "length": 18,
         "gc": 61.1,
@@ -286,26 +276,6 @@
         "quality": 1.883,
         "flags": "",
         "target_seq": "GGATCTCATCTGGCCACC"
-      },
-      {
-        "seq": "GGTGGCCAGATGAGATCC",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -37.0,
-        "self_mfe": 0.0,
-        "quality": 1.883,
-        "flags": "",
-        "target_seq": "GGATCTCATCTGGCCACC"
-      },
-      {
-        "seq": "CGGTGGCCAGATGAGA",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -32.1,
-        "self_mfe": 0.0,
-        "quality": 1.806,
-        "flags": "",
-        "target_seq": "TCTCATCTGGCCACCG"
       },
       {
         "seq": "CGGTGGCCAGATGAGA",
@@ -348,16 +318,6 @@
         "target_seq": "ATCTCATCTGGCCACCGC"
       },
       {
-        "seq": "GCGGTGGCCAGATGAGAT",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.6,
-        "self_mfe": -1.0,
-        "quality": 1.761,
-        "flags": "",
-        "target_seq": "ATCTCATCTGGCCACCGC"
-      },
-      {
         "seq": "CTCTTCCAGAACGCGGTG",
         "length": 18,
         "gc": 61.1,
@@ -376,16 +336,6 @@
         "quality": 1.745,
         "flags": "",
         "target_seq": "TCTCATCTGGCCACCGCGTT"
-      },
-      {
-        "seq": "CGCGGTGGCCAGATGAGATC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -41.9,
-        "self_mfe": -1.3,
-        "quality": 1.715,
-        "flags": "",
-        "target_seq": "GATCTCATCTGGCCACCGCG"
       },
       {
         "seq": "CGCGGTGGCCAGATGAGATC",
@@ -604,16 +554,6 @@
         "target_seq": "GAGGATCTCATCTGGCCA"
       },
       {
-        "seq": "TGGCCAGATGAGATCCTC",
-        "length": 18,
-        "gc": 55.6,
-        "duplex_mfe": -35.5,
-        "self_mfe": 0.0,
-        "quality": 1.911,
-        "flags": "",
-        "target_seq": "GAGGATCTCATCTGGCCA"
-      },
-      {
         "seq": "CGGTGGCCAGATGAGATCCT",
         "length": 20,
         "gc": 60.0,
@@ -622,26 +562,6 @@
         "quality": 1.9,
         "flags": "",
         "target_seq": "AGGATCTCATCTGGCCACCG"
-      },
-      {
-        "seq": "CGGTGGCCAGATGAGATCCT",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -41.0,
-        "self_mfe": 0.0,
-        "quality": 1.9,
-        "flags": "",
-        "target_seq": "AGGATCTCATCTGGCCACCG"
-      },
-      {
-        "seq": "GGTGGCCAGATGAGATCC",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -37.0,
-        "self_mfe": 0.0,
-        "quality": 1.883,
-        "flags": "",
-        "target_seq": "GGATCTCATCTGGCCACC"
       },
       {
         "seq": "GGTGGCCAGATGAGATCC",
@@ -664,26 +584,6 @@
         "target_seq": "AGGATCTCATCTGGCC"
       },
       {
-        "seq": "GGCCAGATGAGATCCT",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -31.0,
-        "self_mfe": 0.0,
-        "quality": 1.863,
-        "flags": "",
-        "target_seq": "AGGATCTCATCTGGCC"
-      },
-      {
-        "seq": "GTGGCCAGATGAGATC",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -30.4,
-        "self_mfe": 0.0,
-        "quality": 1.825,
-        "flags": "",
-        "target_seq": "GATCTCATCTGGCCAC"
-      },
-      {
         "seq": "GTGGCCAGATGAGATC",
         "length": 16,
         "gc": 56.2,
@@ -702,26 +602,6 @@
         "quality": 1.82,
         "flags": "",
         "target_seq": "CGAGGATCTCATCTGGCCAC"
-      },
-      {
-        "seq": "GTGGCCAGATGAGATCCTCG",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -40.6,
-        "self_mfe": -0.6,
-        "quality": 1.82,
-        "flags": "",
-        "target_seq": "CGAGGATCTCATCTGGCCAC"
-      },
-      {
-        "seq": "CGGTGGCCAGATGAGA",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -32.1,
-        "self_mfe": 0.0,
-        "quality": 1.806,
-        "flags": "",
-        "target_seq": "TCTCATCTGGCCACCG"
       },
       {
         "seq": "CGGTGGCCAGATGAGA",
@@ -754,16 +634,6 @@
         "target_seq": "CCGAGGATCTCATCTGGC"
       },
       {
-        "seq": "GCCAGATGAGATCCTCGG",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.3,
-        "self_mfe": -0.6,
-        "quality": 1.784,
-        "flags": "",
-        "target_seq": "CCGAGGATCTCATCTGGC"
-      },
-      {
         "seq": "AGATGAGATCCTCGGC",
         "length": 16,
         "gc": 56.2,
@@ -772,16 +642,6 @@
         "quality": 1.765,
         "flags": "",
         "target_seq": "GCCGAGGATCTCATCT"
-      },
-      {
-        "seq": "GCGGTGGCCAGATGAGAT",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.6,
-        "self_mfe": -1.0,
-        "quality": 1.761,
-        "flags": "",
-        "target_seq": "ATCTCATCTGGCCACCGC"
       },
       {
         "seq": "GCGGTGGCCAGATGAGAT",
@@ -824,26 +684,6 @@
         "target_seq": "CGCCGAGGATCTCATCTG"
       },
       {
-        "seq": "CCAGATGAGATCCTCG",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -29.6,
-        "self_mfe": -0.6,
-        "quality": 1.715,
-        "flags": "",
-        "target_seq": "CGAGGATCTCATCTGG"
-      },
-      {
-        "seq": "CCAGATGAGATCCTCG",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -29.6,
-        "self_mfe": -0.6,
-        "quality": 1.715,
-        "flags": "",
-        "target_seq": "CGAGGATCTCATCTGG"
-      },
-      {
         "seq": "CGCGGTGGCCAGATGAGATC",
         "length": 20,
         "gc": 65.0,
@@ -854,14 +694,14 @@
         "target_seq": "GATCTCATCTGGCCACCGCG"
       },
       {
-        "seq": "CGCGGTGGCCAGATGAGATC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -41.9,
-        "self_mfe": -1.3,
+        "seq": "CCAGATGAGATCCTCG",
+        "length": 16,
+        "gc": 56.2,
+        "duplex_mfe": -29.6,
+        "self_mfe": -0.6,
         "quality": 1.715,
         "flags": "",
-        "target_seq": "GATCTCATCTGGCCACCGCG"
+        "target_seq": "CGAGGATCTCATCTGG"
       },
       {
         "seq": "TCTTCCAGAACGCGGTGGCC",
@@ -942,16 +782,6 @@
         "quality": 1.611,
         "flags": "",
         "target_seq": "GCCACCGCGTTCTGGAAG"
-      },
-      {
-        "seq": "GGCCAGATGAGATCCTCGGC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -43.0,
-        "self_mfe": -3.1,
-        "quality": 1.59,
-        "flags": "",
-        "target_seq": "GCCGAGGATCTCATCTGGCC"
       },
       {
         "seq": "GGCCAGATGAGATCCTCGGC",
@@ -1060,26 +890,6 @@
         "target_seq": "TCCGAGAGACGAGTGGGAGA"
       },
       {
-        "seq": "TCTCCCACTCGTCTCTCGGA",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -41.3,
-        "self_mfe": -0.3,
-        "quality": 1.885,
-        "flags": "",
-        "target_seq": "TCCGAGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "GCTCTCCCACTCGTCTCTCG",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -42.1,
-        "self_mfe": 0.0,
-        "quality": 1.855,
-        "flags": "",
-        "target_seq": "CGAGAGACGAGTGGGAGAGC"
-      },
-      {
         "seq": "GCTCTCCCACTCGTCTCTCG",
         "length": 20,
         "gc": 65.0,
@@ -1098,26 +908,6 @@
         "quality": 1.85,
         "flags": "",
         "target_seq": "AGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "TCTCCCACTCGTCTCT",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -30.8,
-        "self_mfe": 0.0,
-        "quality": 1.85,
-        "flags": "",
-        "target_seq": "AGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "CTCTCCCACTCGTCTCTC",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.3,
-        "self_mfe": 0.0,
-        "quality": 1.844,
-        "flags": "",
-        "target_seq": "GAGAGACGAGTGGGAGAG"
       },
       {
         "seq": "CTCTCCCACTCGTCTCTC",
@@ -1140,14 +930,14 @@
         "target_seq": "AGACGAGTGGGAGAGC"
       },
       {
-        "seq": "CTCGCTCTCCCACTCGTC",
+        "seq": "CGCTCTCCCACTCGTCTC",
         "length": 18,
         "gc": 66.7,
         "duplex_mfe": -37.6,
         "self_mfe": 0.0,
         "quality": 1.806,
         "flags": "",
-        "target_seq": "GACGAGTGGGAGAGCGAG"
+        "target_seq": "GAGACGAGTGGGAGAGCG"
       },
       {
         "seq": "TCGCTCTCCCACTCGT",
@@ -1160,24 +950,14 @@
         "target_seq": "ACGAGTGGGAGAGCGA"
       },
       {
-        "seq": "CGCTCTCCCACTCGTCTC",
+        "seq": "CTCGCTCTCCCACTCGTC",
         "length": 18,
         "gc": 66.7,
         "duplex_mfe": -37.6,
         "self_mfe": 0.0,
         "quality": 1.806,
         "flags": "",
-        "target_seq": "GAGACGAGTGGGAGAGCG"
-      },
-      {
-        "seq": "CTCCCACTCGTCTCTCGG",
-        "length": 18,
-        "gc": 66.7,
-        "duplex_mfe": -37.5,
-        "self_mfe": 0.0,
-        "quality": 1.8,
-        "flags": "",
-        "target_seq": "CCGAGAGACGAGTGGGAG"
+        "target_seq": "GACGAGTGGGAGAGCGAG"
       },
       {
         "seq": "CTCCCACTCGTCTCTCGG",
@@ -1208,26 +988,6 @@
         "quality": 1.775,
         "flags": "",
         "target_seq": "CGAGAGACGAGTGGGA"
-      },
-      {
-        "seq": "TCCCACTCGTCTCTCG",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -31.6,
-        "self_mfe": 0.0,
-        "quality": 1.775,
-        "flags": "",
-        "target_seq": "CGAGAGACGAGTGGGA"
-      },
-      {
-        "seq": "CCACTCGTCTCTCGGA",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -31.6,
-        "self_mfe": -0.3,
-        "quality": 1.745,
-        "flags": "",
-        "target_seq": "TCCGAGAGACGAGTGG"
       },
       {
         "seq": "CCACTCGTCTCTCGGA",
@@ -1270,16 +1030,6 @@
         "target_seq": "GCTCCGAGAGACGAGTGGGA"
       },
       {
-        "seq": "TCCCACTCGTCTCTCGGAGC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -42.8,
-        "self_mfe": -2.5,
-        "quality": 1.64,
-        "flags": "",
-        "target_seq": "GCTCCGAGAGACGAGTGGGA"
-      },
-      {
         "seq": "ACTCGTCTCTCGGAGCCCAG",
         "length": 20,
         "gc": 65.0,
@@ -1288,16 +1038,6 @@
         "quality": 1.625,
         "flags": "",
         "target_seq": "CTGGGCTCCGAGAGACGAGT"
-      },
-      {
-        "seq": "CCCACTCGTCTCTCGGAG",
-        "length": 18,
-        "gc": 66.7,
-        "duplex_mfe": -37.5,
-        "self_mfe": -1.9,
-        "quality": 1.61,
-        "flags": "",
-        "target_seq": "CTCCGAGAGACGAGTGGG"
       },
       {
         "seq": "CCACTCGTCTCTCGGAGCCC",
@@ -1416,16 +1156,6 @@
         "target_seq": "GAGGATCTCATCTGGCCA"
       },
       {
-        "seq": "TGGCCAGATGAGATCCTC",
-        "length": 18,
-        "gc": 55.6,
-        "duplex_mfe": -35.5,
-        "self_mfe": 0.0,
-        "quality": 1.911,
-        "flags": "",
-        "target_seq": "GAGGATCTCATCTGGCCA"
-      },
-      {
         "seq": "CGGTGGCCAGATGAGATCCT",
         "length": 20,
         "gc": 60.0,
@@ -1434,26 +1164,6 @@
         "quality": 1.9,
         "flags": "",
         "target_seq": "AGGATCTCATCTGGCCACCG"
-      },
-      {
-        "seq": "CGGTGGCCAGATGAGATCCT",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -41.0,
-        "self_mfe": 0.0,
-        "quality": 1.9,
-        "flags": "",
-        "target_seq": "AGGATCTCATCTGGCCACCG"
-      },
-      {
-        "seq": "GGTGGCCAGATGAGATCC",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -37.0,
-        "self_mfe": 0.0,
-        "quality": 1.883,
-        "flags": "",
-        "target_seq": "GGATCTCATCTGGCCACC"
       },
       {
         "seq": "GGTGGCCAGATGAGATCC",
@@ -1476,26 +1186,6 @@
         "target_seq": "AGGATCTCATCTGGCC"
       },
       {
-        "seq": "GGCCAGATGAGATCCT",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -31.0,
-        "self_mfe": 0.0,
-        "quality": 1.863,
-        "flags": "",
-        "target_seq": "AGGATCTCATCTGGCC"
-      },
-      {
-        "seq": "GTGGCCAGATGAGATC",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -30.4,
-        "self_mfe": 0.0,
-        "quality": 1.825,
-        "flags": "",
-        "target_seq": "GATCTCATCTGGCCAC"
-      },
-      {
         "seq": "GTGGCCAGATGAGATC",
         "length": 16,
         "gc": 56.2,
@@ -1514,26 +1204,6 @@
         "quality": 1.82,
         "flags": "",
         "target_seq": "CGAGGATCTCATCTGGCCAC"
-      },
-      {
-        "seq": "GTGGCCAGATGAGATCCTCG",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -40.6,
-        "self_mfe": -0.6,
-        "quality": 1.82,
-        "flags": "",
-        "target_seq": "CGAGGATCTCATCTGGCCAC"
-      },
-      {
-        "seq": "CGGTGGCCAGATGAGA",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -32.1,
-        "self_mfe": 0.0,
-        "quality": 1.806,
-        "flags": "",
-        "target_seq": "TCTCATCTGGCCACCG"
       },
       {
         "seq": "CGGTGGCCAGATGAGA",
@@ -1566,16 +1236,6 @@
         "target_seq": "CCGAGGATCTCATCTGGC"
       },
       {
-        "seq": "GCCAGATGAGATCCTCGG",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.3,
-        "self_mfe": -0.6,
-        "quality": 1.784,
-        "flags": "",
-        "target_seq": "CCGAGGATCTCATCTGGC"
-      },
-      {
         "seq": "AGATGAGATCCTCGGC",
         "length": 16,
         "gc": 56.2,
@@ -1584,16 +1244,6 @@
         "quality": 1.765,
         "flags": "",
         "target_seq": "GCCGAGGATCTCATCT"
-      },
-      {
-        "seq": "GCGGTGGCCAGATGAGAT",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.6,
-        "self_mfe": -1.0,
-        "quality": 1.761,
-        "flags": "",
-        "target_seq": "ATCTCATCTGGCCACCGC"
       },
       {
         "seq": "GCGGTGGCCAGATGAGAT",
@@ -1644,26 +1294,6 @@
         "quality": 1.715,
         "flags": "",
         "target_seq": "CGAGGATCTCATCTGG"
-      },
-      {
-        "seq": "CCAGATGAGATCCTCG",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -29.6,
-        "self_mfe": -0.6,
-        "quality": 1.715,
-        "flags": "",
-        "target_seq": "CGAGGATCTCATCTGG"
-      },
-      {
-        "seq": "CGCGGTGGCCAGATGAGATC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -41.9,
-        "self_mfe": -1.3,
-        "quality": 1.715,
-        "flags": "",
-        "target_seq": "GATCTCATCTGGCCACCGCG"
       },
       {
         "seq": "TCTTCCAGAACGCGGTGGCC",
@@ -1724,16 +1354,6 @@
         "quality": 1.611,
         "flags": "",
         "target_seq": "GCCACCGCGTTCTGGAAG"
-      },
-      {
-        "seq": "GGCCAGATGAGATCCTCGGC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -43.0,
-        "self_mfe": -3.1,
-        "quality": 1.59,
-        "flags": "",
-        "target_seq": "GCCGAGGATCTCATCTGGCC"
       },
       {
         "seq": "GGCCAGATGAGATCCTCGGC",
@@ -1842,26 +1462,6 @@
         "target_seq": "TCCGAGAGACGAGTGGGAGA"
       },
       {
-        "seq": "TCTCCCACTCGTCTCTCGGA",
-        "length": 20,
-        "gc": 60.0,
-        "duplex_mfe": -41.3,
-        "self_mfe": -0.3,
-        "quality": 1.885,
-        "flags": "",
-        "target_seq": "TCCGAGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "GCTCTCCCACTCGTCTCTCG",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -42.1,
-        "self_mfe": 0.0,
-        "quality": 1.855,
-        "flags": "",
-        "target_seq": "CGAGAGACGAGTGGGAGAGC"
-      },
-      {
         "seq": "GCTCTCCCACTCGTCTCTCG",
         "length": 20,
         "gc": 65.0,
@@ -1880,26 +1480,6 @@
         "quality": 1.85,
         "flags": "",
         "target_seq": "AGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "TCTCCCACTCGTCTCT",
-        "length": 16,
-        "gc": 56.2,
-        "duplex_mfe": -30.8,
-        "self_mfe": 0.0,
-        "quality": 1.85,
-        "flags": "",
-        "target_seq": "AGAGACGAGTGGGAGA"
-      },
-      {
-        "seq": "CTCTCCCACTCGTCTCTC",
-        "length": 18,
-        "gc": 61.1,
-        "duplex_mfe": -36.3,
-        "self_mfe": 0.0,
-        "quality": 1.844,
-        "flags": "",
-        "target_seq": "GAGAGACGAGTGGGAGAG"
       },
       {
         "seq": "CTCTCCCACTCGTCTCTC",
@@ -1962,16 +1542,6 @@
         "target_seq": "CCGAGAGACGAGTGGGAG"
       },
       {
-        "seq": "CTCCCACTCGTCTCTCGG",
-        "length": 18,
-        "gc": 66.7,
-        "duplex_mfe": -37.5,
-        "self_mfe": 0.0,
-        "quality": 1.8,
-        "flags": "",
-        "target_seq": "CCGAGAGACGAGTGGGAG"
-      },
-      {
         "seq": "TCGTCTCTCGGAGCCC",
         "length": 16,
         "gc": 68.8,
@@ -1990,26 +1560,6 @@
         "quality": 1.775,
         "flags": "",
         "target_seq": "CGAGAGACGAGTGGGA"
-      },
-      {
-        "seq": "TCCCACTCGTCTCTCG",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -31.6,
-        "self_mfe": 0.0,
-        "quality": 1.775,
-        "flags": "",
-        "target_seq": "CGAGAGACGAGTGGGA"
-      },
-      {
-        "seq": "CCACTCGTCTCTCGGA",
-        "length": 16,
-        "gc": 62.5,
-        "duplex_mfe": -31.6,
-        "self_mfe": -0.3,
-        "quality": 1.745,
-        "flags": "",
-        "target_seq": "TCCGAGAGACGAGTGG"
       },
       {
         "seq": "CCACTCGTCTCTCGGA",
@@ -2052,16 +1602,6 @@
         "target_seq": "GCTCCGAGAGACGAGTGGGA"
       },
       {
-        "seq": "TCCCACTCGTCTCTCGGAGC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -42.8,
-        "self_mfe": -2.5,
-        "quality": 1.64,
-        "flags": "",
-        "target_seq": "GCTCCGAGAGACGAGTGGGA"
-      },
-      {
         "seq": "ACTCGTCTCTCGGAGCCCAG",
         "length": 20,
         "gc": 65.0,
@@ -2070,16 +1610,6 @@
         "quality": 1.625,
         "flags": "",
         "target_seq": "CTGGGCTCCGAGAGACGAGT"
-      },
-      {
-        "seq": "CCCACTCGTCTCTCGGAG",
-        "length": 18,
-        "gc": 66.7,
-        "duplex_mfe": -37.5,
-        "self_mfe": -1.9,
-        "quality": 1.61,
-        "flags": "",
-        "target_seq": "CTCCGAGAGACGAGTGGG"
       },
       {
         "seq": "CCACTCGTCTCTCGGAGCCC",
@@ -2288,16 +1818,6 @@
         "target_seq": "GCTCCGAGAGACGAGTGGGA"
       },
       {
-        "seq": "TCCCACTCGTCTCTCGGAGC",
-        "length": 20,
-        "gc": 65.0,
-        "duplex_mfe": -42.8,
-        "self_mfe": -2.5,
-        "quality": 1.64,
-        "flags": "",
-        "target_seq": "GCTCCGAGAGACGAGTGGGA"
-      },
-      {
         "seq": "ACTCGTCTCTCGGAGCCCAG",
         "length": 20,
         "gc": 65.0,
@@ -2306,16 +1826,6 @@
         "quality": 1.625,
         "flags": "",
         "target_seq": "CTGGGCTCCGAGAGACGAGT"
-      },
-      {
-        "seq": "CCCACTCGTCTCTCGGAG",
-        "length": 18,
-        "gc": 66.7,
-        "duplex_mfe": -37.5,
-        "self_mfe": -1.9,
-        "quality": 1.61,
-        "flags": "",
-        "target_seq": "CTCCGAGAGACGAGTGGG"
       },
       {
         "seq": "CCCACTCGTCTCTCGGAG",

@@ -28,7 +28,7 @@
       <div>
         <h1>CTG@358
           
-            <span class="badge badge-noncanonical">NON-CANONICAL ONLY</span>
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
           
         </h1>
         <p class="subtitle">RAI1-201 &middot; chr17:17,724,050 &middot; 36 aa uORF &middot; Composite 6.3/10
@@ -58,7 +58,7 @@
   <h2>5&prime;UTR Genome Track</h2>
   <div class="genome-viewer" id="utr-track"></div>
   <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
-    UTR length: 484 bp &middot; GC content: 0% &middot;
+    UTR length: 484 bp &middot;
     uAUG at position 358 &middot; Stop at 472
   </div>
 </section>
@@ -119,54 +119,12 @@
       </tr>
       
       <tr >
-        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGATCCT</td>
-        <td>20</td>
-        <td>60%</td>
-        <td>-41.0</td>
-        <td>0.0</td>
-        <td><strong>1.9</strong></td>
-        <td>
-          
-            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
-          
-        </td>
-      </tr>
-      
-      <tr >
         <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGTGGCCAGATGAGATCC</td>
         <td>18</td>
         <td>61%</td>
         <td>-37.0</td>
         <td>0.0</td>
         <td><strong>1.883</strong></td>
-        <td>
-          
-            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
-          
-        </td>
-      </tr>
-      
-      <tr >
-        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGTGGCCAGATGAGATCC</td>
-        <td>18</td>
-        <td>61%</td>
-        <td>-37.0</td>
-        <td>0.0</td>
-        <td><strong>1.883</strong></td>
-        <td>
-          
-            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
-          
-        </td>
-      </tr>
-      
-      <tr >
-        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGA</td>
-        <td>16</td>
-        <td>62%</td>
-        <td>-32.1</td>
-        <td>0.0</td>
-        <td><strong>1.806</strong></td>
         <td>
           
             <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
@@ -231,20 +189,6 @@
       </tr>
       
       <tr >
-        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GCGGTGGCCAGATGAGAT</td>
-        <td>18</td>
-        <td>61%</td>
-        <td>-36.6</td>
-        <td>-1.0</td>
-        <td><strong>1.761</strong></td>
-        <td>
-          
-            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
-          
-        </td>
-      </tr>
-      
-      <tr >
         <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CTCTTCCAGAACGCGGTG</td>
         <td>18</td>
         <td>61%</td>
@@ -265,20 +209,6 @@
         <td>-40.5</td>
         <td>-1.3</td>
         <td><strong>1.745</strong></td>
-        <td>
-          
-            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
-          
-        </td>
-      </tr>
-      
-      <tr >
-        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGCGGTGGCCAGATGAGATC</td>
-        <td>20</td>
-        <td>65%</td>
-        <td>-41.9</td>
-        <td>-1.3</td>
-        <td><strong>1.715</strong></td>
         <td>
           
             <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
@@ -620,7 +550,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   
 <script>
-const target = {"aa_len": 36, "aso_window": {"chr": "chr17", "end": 17724065, "start": 17724035}, "best_asos": [{"duplex_mfe": -41.0, "flags": "", "gc": 60.0, "length": 20, "quality": 1.9, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCCACCG"}, {"duplex_mfe": -41.0, "flags": "", "gc": 60.0, "length": 20, "quality": 1.9, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCCACCG"}, {"duplex_mfe": -37.0, "flags": "", "gc": 61.1, "length": 18, "quality": 1.883, "self_mfe": 0.0, "seq": "GGTGGCCAGATGAGATCC", "target_seq": "GGATCTCATCTGGCCACC"}, {"duplex_mfe": -37.0, "flags": "", "gc": 61.1, "length": 18, "quality": 1.883, "self_mfe": 0.0, "seq": "GGTGGCCAGATGAGATCC", "target_seq": "GGATCTCATCTGGCCACC"}, {"duplex_mfe": -32.1, "flags": "", "gc": 62.5, "length": 16, "quality": 1.806, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCG"}, {"duplex_mfe": -32.1, "flags": "", "gc": 62.5, "length": 16, "quality": 1.806, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCG"}, {"duplex_mfe": -35.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.806, "self_mfe": 0.0, "seq": "TCGCCTCTTCCAGAACGC", "target_seq": "GCGTTCTGGAAGAGGCGA"}, {"duplex_mfe": -29.4, "flags": "", "gc": 56.2, "length": 16, "quality": 1.762, "self_mfe": 0.0, "seq": "TCTTCCAGAACGCGGT", "target_seq": "ACCGCGTTCTGGAAGA"}, {"duplex_mfe": -36.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.761, "self_mfe": -1.0, "seq": "GCGGTGGCCAGATGAGAT", "target_seq": "ATCTCATCTGGCCACCGC"}, {"duplex_mfe": -36.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.761, "self_mfe": -1.0, "seq": "GCGGTGGCCAGATGAGAT", "target_seq": "ATCTCATCTGGCCACCGC"}, {"duplex_mfe": -34.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.75, "self_mfe": 0.0, "seq": "CTCTTCCAGAACGCGGTG", "target_seq": "CACCGCGTTCTGGAAGAG"}, {"duplex_mfe": -40.5, "flags": "", "gc": 60.0, "length": 20, "quality": 1.745, "self_mfe": -1.3, "seq": "AACGCGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCGCGTT"}, {"duplex_mfe": -41.9, "flags": "", "gc": 65.0, "length": 20, "quality": 1.715, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCACCGCG"}, {"duplex_mfe": -41.9, "flags": "", "gc": 65.0, "length": 20, "quality": 1.715, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCACCGCG"}, {"duplex_mfe": -37.0, "flags": "", "gc": 66.7, "length": 18, "quality": 1.702, "self_mfe": -0.7, "seq": "GCCTCTTCCAGAACGCGG", "target_seq": "CCGCGTTCTGGAAGAGGC"}, {"duplex_mfe": -42.0, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.5, "seq": "TCTTCCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGGAAGA"}, {"duplex_mfe": -41.2, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.1, "seq": "CCTCTTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAAGAGG"}, {"duplex_mfe": -30.3, "flags": "", "gc": 62.5, "length": 16, "quality": 1.694, "self_mfe": 0.0, "seq": "CCTCTTCCAGAACGCG", "target_seq": "CGCGTTCTGGAAGAGG"}, {"duplex_mfe": -30.3, "flags": "", "gc": 62.5, "length": 16, "quality": 1.694, "self_mfe": 0.0, "seq": "CGCCTCTTCCAGAACG", "target_seq": "CGTTCTGGAAGAGGCG"}, {"duplex_mfe": -41.8, "flags": "", "gc": 65.0, "length": 20, "quality": 1.69, "self_mfe": -1.5, "seq": "TTCCAGAACGCGGTGGCCAG", "target_seq": "CTGGCCACCGCGTTCTGGAA"}, {"duplex_mfe": -38.2, "flags": "", "gc": 66.7, "length": 18, "quality": 1.689, "self_mfe": -1.5, "seq": "TCCAGAACGCGGTGGCCA", "target_seq": "TGGCCACCGCGTTCTGGA"}, {"duplex_mfe": -37.7, "flags": "", "gc": 66.7, "length": 18, "quality": 1.681, "self_mfe": -1.3, "seq": "ACGCGGTGGCCAGATGAG", "target_seq": "CTCATCTGGCCACCGCGT"}, {"duplex_mfe": -33.4, "flags": "", "gc": 68.8, "length": 16, "quality": 1.632, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGA", "target_seq": "TCATCTGGCCACCGCG"}, {"duplex_mfe": -40.6, "flags": "", "gc": 65.0, "length": 20, "quality": 1.63, "self_mfe": -1.5, "seq": "CTCGCCTCTTCCAGAACGCG", "target_seq": "CGCGTTCTGGAAGAGGCGAG"}, {"duplex_mfe": -30.9, "flags": "", "gc": 62.5, "length": 16, "quality": 1.621, "self_mfe": -1.1, "seq": "TTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAA"}, {"duplex_mfe": -36.8, "flags": "", "gc": 66.7, "length": 18, "quality": 1.611, "self_mfe": -1.5, "seq": "CTTCCAGAACGCGGTGGC", "target_seq": "GCCACCGCGTTCTGGAAG"}, {"duplex_mfe": -34.7, "flags": "", "gc": 75.0, "length": 16, "quality": 1.579, "self_mfe": -1.4, "seq": "CCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGG"}, {"duplex_mfe": -41.1, "flags": "", "gc": 65.0, "length": 20, "quality": 1.535, "self_mfe": -2.7, "seq": "CGCCTCTTCCAGAACGCGGT", "target_seq": "ACCGCGTTCTGGAAGAGGCG"}], "cds_control_sum": 1436.0, "codon_strength": 0.5, "composite_score": 6.3, "conservation": {"uAUG_window": {"coords": "chr17:17724035-17724065", "phyloP": 1.5819}}, "designability": {"clean": 28, "score": 1.0, "total": 28}, "id": "CTG@358", "kozak": 0, "lights": {"canonical": "green", "conservation": "green", "designability": "green", "initiation": "yellow", "riboseq": "yellow"}, "notes": "near-cognate CTG, 2.57x Ribo-seq enrichment", "rank": 2, "refseq": "", "ribo": {"enrichment": 2.57, "max": 9.2, "mean": 9.2, "region": "chr17:17724020-17724080", "sum": 23.64}, "slug": "nc-CTG-358", "source_quality": "canonical UTR scan", "start_codon": "CTG", "stop_pos": 472, "target_type": "near_cognate_uORF", "transcript_id": "ENST00000353383", "transcript_name": "RAI1-201", "triage_verdict": "canonical_utr", "uaug_genomic": 17724050, "uaug_pos": 358, "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38\u0026position=chr17:17723835-17724265", "utr_gc": 0, "utr_len": 484};
+const target = {"aa_len": 36, "aso_window": {"chr": "chr17", "end": 17724065, "start": 17724035}, "best_asos": [{"duplex_mfe": -41.0, "flags": "", "gc": 60.0, "length": 20, "quality": 1.9, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCCACCG"}, {"duplex_mfe": -37.0, "flags": "", "gc": 61.1, "length": 18, "quality": 1.883, "self_mfe": 0.0, "seq": "GGTGGCCAGATGAGATCC", "target_seq": "GGATCTCATCTGGCCACC"}, {"duplex_mfe": -32.1, "flags": "", "gc": 62.5, "length": 16, "quality": 1.806, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCG"}, {"duplex_mfe": -35.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.806, "self_mfe": 0.0, "seq": "TCGCCTCTTCCAGAACGC", "target_seq": "GCGTTCTGGAAGAGGCGA"}, {"duplex_mfe": -29.4, "flags": "", "gc": 56.2, "length": 16, "quality": 1.762, "self_mfe": 0.0, "seq": "TCTTCCAGAACGCGGT", "target_seq": "ACCGCGTTCTGGAAGA"}, {"duplex_mfe": -36.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.761, "self_mfe": -1.0, "seq": "GCGGTGGCCAGATGAGAT", "target_seq": "ATCTCATCTGGCCACCGC"}, {"duplex_mfe": -34.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.75, "self_mfe": 0.0, "seq": "CTCTTCCAGAACGCGGTG", "target_seq": "CACCGCGTTCTGGAAGAG"}, {"duplex_mfe": -40.5, "flags": "", "gc": 60.0, "length": 20, "quality": 1.745, "self_mfe": -1.3, "seq": "AACGCGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCGCGTT"}, {"duplex_mfe": -41.9, "flags": "", "gc": 65.0, "length": 20, "quality": 1.715, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCACCGCG"}, {"duplex_mfe": -37.0, "flags": "", "gc": 66.7, "length": 18, "quality": 1.702, "self_mfe": -0.7, "seq": "GCCTCTTCCAGAACGCGG", "target_seq": "CCGCGTTCTGGAAGAGGC"}, {"duplex_mfe": -42.0, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.5, "seq": "TCTTCCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGGAAGA"}, {"duplex_mfe": -41.2, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.1, "seq": "CCTCTTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAAGAGG"}, {"duplex_mfe": -30.3, "flags": "", "gc": 62.5, "length": 16, "quality": 1.694, "self_mfe": 0.0, "seq": "CCTCTTCCAGAACGCG", "target_seq": "CGCGTTCTGGAAGAGG"}, {"duplex_mfe": -30.3, "flags": "", "gc": 62.5, "length": 16, "quality": 1.694, "self_mfe": 0.0, "seq": "CGCCTCTTCCAGAACG", "target_seq": "CGTTCTGGAAGAGGCG"}, {"duplex_mfe": -41.8, "flags": "", "gc": 65.0, "length": 20, "quality": 1.69, "self_mfe": -1.5, "seq": "TTCCAGAACGCGGTGGCCAG", "target_seq": "CTGGCCACCGCGTTCTGGAA"}, {"duplex_mfe": -38.2, "flags": "", "gc": 66.7, "length": 18, "quality": 1.689, "self_mfe": -1.5, "seq": "TCCAGAACGCGGTGGCCA", "target_seq": "TGGCCACCGCGTTCTGGA"}, {"duplex_mfe": -37.7, "flags": "", "gc": 66.7, "length": 18, "quality": 1.681, "self_mfe": -1.3, "seq": "ACGCGGTGGCCAGATGAG", "target_seq": "CTCATCTGGCCACCGCGT"}, {"duplex_mfe": -33.4, "flags": "", "gc": 68.8, "length": 16, "quality": 1.632, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGA", "target_seq": "TCATCTGGCCACCGCG"}, {"duplex_mfe": -40.6, "flags": "", "gc": 65.0, "length": 20, "quality": 1.63, "self_mfe": -1.5, "seq": "CTCGCCTCTTCCAGAACGCG", "target_seq": "CGCGTTCTGGAAGAGGCGAG"}, {"duplex_mfe": -30.9, "flags": "", "gc": 62.5, "length": 16, "quality": 1.621, "self_mfe": -1.1, "seq": "TTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAA"}, {"duplex_mfe": -36.8, "flags": "", "gc": 66.7, "length": 18, "quality": 1.611, "self_mfe": -1.5, "seq": "CTTCCAGAACGCGGTGGC", "target_seq": "GCCACCGCGTTCTGGAAG"}, {"duplex_mfe": -34.7, "flags": "", "gc": 75.0, "length": 16, "quality": 1.579, "self_mfe": -1.4, "seq": "CCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGG"}, {"duplex_mfe": -41.1, "flags": "", "gc": 65.0, "length": 20, "quality": 1.535, "self_mfe": -2.7, "seq": "CGCCTCTTCCAGAACGCGGT", "target_seq": "ACCGCGTTCTGGAAGAGGCG"}], "cds_control_sum": 1436.0, "codon_strength": 0.5, "composite_score": 6.3, "conservation": {"uAUG_window": {"coords": "chr17:17724035-17724065", "phyloP": 1.5819}}, "designability": {"clean": 28, "score": 1.0, "total": 28}, "id": "CTG@358", "kozak": 0, "lights": {"canonical": "green", "conservation": "green", "designability": "green", "initiation": "yellow", "riboseq": "yellow"}, "notes": "near-cognate CTG, 2.57x Ribo-seq enrichment", "rank": 2, "refseq": "", "ribo": {"enrichment": 2.57, "max": 9.2, "mean": 9.2, "region": "chr17:17724020-17724080", "sum": 23.64}, "slug": "nc-CTG-358", "source_quality": "canonical UTR scan", "start_codon": "CTG", "stop_pos": 472, "target_type": "near_cognate_uORF", "transcript_id": "ENST00000353383", "transcript_name": "RAI1-201", "triage_verdict": "canonical_utr", "uaug_genomic": 17724050, "uaug_pos": 358, "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38\u0026position=chr17:17723835-17724265", "utr_gc": 0, "utr_len": 484};
 
 // Ribo-seq chart
 new Chart(document.getElementById('ribo-chart'), {

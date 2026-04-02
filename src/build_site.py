@@ -98,8 +98,8 @@ def compute_designability(utr_pos, aso_df, utr_type="5prime"):
     # Designability: fraction of clean candidates, min 0, max 1
     score = n_clean / n_total if n_total > 0 else 0
 
-    # Get ALL candidates for this target, sorted by quality
-    sorted_nearby = nearby.sort_values("quality_score", ascending=False)
+    # Get ALL candidates for this target, deduplicated by sequence, sorted by quality
+    sorted_nearby = nearby.drop_duplicates(subset=["aso_seq"]).sort_values("quality_score", ascending=False)
     best = []
     for _, r in sorted_nearby.iterrows():
         best.append({
@@ -500,10 +500,10 @@ def build_aso_candidates(data):
         return {}
     result = {}
     for region in df["region"].unique():
-        rdf = df[df["region"] == region].copy()
+        rdf = df[df["region"] == region].copy().drop_duplicates(subset=["aso_seq"])
         clean = rdf[rdf["flags"].isna() | (rdf["flags"] == "")]
         flagged = rdf[~(rdf["flags"].isna() | (rdf["flags"] == ""))]
-        # Return ALL candidates, clean first then flagged, sorted by quality
+        # Return ALL candidates (deduplicated), clean first then flagged, sorted by quality
         all_candidates = []
         for _, r in clean.sort_values("quality_score", ascending=False).iterrows():
             all_candidates.append(_aso_row(r, False))
