@@ -54,7 +54,8 @@
       "Bash(git commit -m \"Add ranked targets table to README:*)",
       "Bash(git commit -m \"Move GitHub link to nav bar with icon, remove separate section:*)",
       "Bash(git commit -m \"Remove findings from README, keep it mechanism-agnostic:*)",
-      "Bash(git commit -m \"Add unified All Viable Targets table across all mechanisms:*)"
+      "Bash(git commit -m \"Add unified All Viable Targets table across all mechanisms:*)",
+      "Bash(git commit -m \"Sort All Viable Targets table by tier \\(pre-sorted in build script\\):*)"
     ]
   }
 }

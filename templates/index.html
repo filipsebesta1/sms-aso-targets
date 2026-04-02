@@ -63,48 +63,19 @@
     </tr>
     </thead>
     <tbody>
-    {% for t in targets %}
-    <tr>
-      <td><span class="badge {% if t.composite_score >= 5 %}badge-canonical{% elif t.composite_score >= 3 %}badge-shared{% else %}badge-noncanonical{% endif %}">{% if t.composite_score >= 5 %}Tier 1{% elif t.composite_score >= 3 %}Tier 2{% else %}Tier 3{% endif %}</span></td>
-      <td>uORF blocking{% if t.target_type == 'near_cognate_uORF' %} ({{ t.start_codon }}){% endif %}</td>
-      <td style="font-family:var(--mono); font-size:12px;">{{ t.id }}</td>
-      <td>5&prime;UTR pos {{ t.uaug_pos }}</td>
-      <td>{% if t.target_type == 'AUG_uORF' %}Ribo={{ t.ribo.sum|int }}{% else %}{{ t.ribo.get('enrichment', '') }}x enrich{% endif %}, phyloP={{ t.conservation.get('uAUG_window', {}).get('phyloP', 'N/A') }}</td>
-      <td><span class="light {{ t.lights.designability }}" style="width:14px;height:14px;font-size:8px;">D</span> {{ t.designability.clean }}/{{ t.designability.total }}</td>
-      <td><a href="target/{{ t.slug }}.html" class="btn btn-sm">Details</a></td>
-    </tr>
-    {% endfor %}
-    {% for s in structure %}
-    <tr>
-      <td><span class="badge badge-canonical">Tier 1</span></td>
-      <td>5&prime;UTR structure</td>
-      <td style="font-size:12px;">Hairpin {{ s.window_start }}-{{ s.window_end }}</td>
-      <td>5&prime;UTR pos {{ s.window_start }}-{{ s.window_end }}</td>
-      <td>MFE={{ s.mfe }} kcal/mol, GC={{ s.gc_content }}%</td>
-      <td style="font-size:12px; color:var(--text-muted);">{% if s.gc_content > 80 %}<span class="light yellow" style="width:14px;height:14px;font-size:8px;">!</span> High GC{% else %}<span class="light green" style="width:14px;height:14px;font-size:8px;">+</span> OK{% endif %}</td>
-      <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:{{ s.genomic_start - 100 }}-{{ s.genomic_end + 100 }}" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a></td>
-    </tr>
-    {% endfor %}
-    {% for s in utr3_struct.top %}
-    <tr>
-      <td><span class="badge badge-shared">Tier 2</span></td>
-      <td>3&prime;UTR structure</td>
-      <td style="font-size:12px;">Hairpin {{ s.pos }}</td>
-      <td>3&prime;UTR pos {{ s.pos }}</td>
-      <td>MFE={{ s.mfe }} kcal/mol, GC={{ s.gc }}%</td>
-      <td style="font-size:12px;">{% if s.gc < 75 %}<span class="light green" style="width:14px;height:14px;font-size:8px;">+</span> OK{% else %}<span class="light yellow" style="width:14px;height:14px;font-size:8px;">!</span> High GC{% endif %}</td>
-      <td></td>
-    </tr>
-    {% endfor %}
-    {% for m in mirna %}
-    <tr style="opacity:0.6;">
-      <td><span class="badge badge-noncanonical">Tier 3</span></td>
-      <td>miRNA blocking</td>
-      <td style="font-size:12px;">{{ m.representative }}</td>
-      <td>3&prime;UTR</td>
-      <td>context++={{ m.context_score }}, {{ m.conserved_sites }} sites</td>
-      <td style="font-size:12px; color:var(--text-muted);">Different chemistry</td>
-      <td></td>
+    {% for v in all_viable %}
+    <tr {% if v.tier == 3 %}style="opacity:0.6;"{% endif %}>
+      <td><span class="badge {% if v.tier == 1 %}badge-canonical{% elif v.tier == 2 %}badge-shared{% else %}badge-noncanonical{% endif %}">Tier {{ v.tier }}</span></td>
+      <td>{{ v.mechanism }}</td>
+      <td style="font-family:var(--mono); font-size:12px;">{{ v.target_name }}</td>
+      <td>{{ v.region }}</td>
+      <td>{{ v.key_metric }}, {{ v.key_metric_2 }}</td>
+      <td><span class="light {{ v.feasibility_light }}" style="width:14px;height:14px;font-size:8px;">{% if v.feasibility_light == 'green' %}+{% elif v.feasibility_light == 'yellow' %}!{% else %}-{% endif %}</span> {{ v.feasibility_text }}</td>
+      <td>
+        {% if v.link_type == 'internal' %}<a href="{{ v.link }}" class="btn btn-sm">Details</a>
+        {% elif v.link_type == 'external' %}<a href="{{ v.link }}" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
     </tbody>

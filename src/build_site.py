@@ -588,7 +588,7 @@ def build_nmd(data):
 # ---------------------------------------------------------------------------
 
 def render_site(targets, expression, transcripts, overlap, near_cognate, nmd,
-                structure, structure_profile, mirna, g4, utr3_struct, rbp, polya, aso):
+                structure, structure_profile, mirna, g4, utr3_struct, rbp, polya, aso, all_viable):
     env = Environment(loader=FileSystemLoader(str(TMPL)), autoescape=False)
 
     # Write JSON data files
@@ -620,6 +620,7 @@ def render_site(targets, expression, transcripts, overlap, near_cognate, nmd,
         "polya": polya,
         "utr3_profile_json": json.dumps(utr3_struct.get("profile", [])),
         "aso": aso,
+        "all_viable": all_viable,
         "targets_json": json.dumps(targets),
         "expression_json": json.dumps(expression),
         "transcripts_json": json.dumps(transcripts),
@@ -706,8 +707,59 @@ def main():
     total_clean = sum(r["clean"] for r in aso.values())
     print(f"  Built {total_aso} ASO candidates ({total_clean} clean) across {len(aso)} regions")
 
+    # Build unified target list across all mechanisms, sorted by tier
+    all_viable = []
+    for t in targets:
+        tier = 1 if t["composite_score"] >= 5 else (2 if t["composite_score"] >= 3 else 3)
+        all_viable.append({
+            "tier": tier, "mechanism": f"uORF blocking{' (' + t['start_codon'] + ')' if t['target_type'] == 'near_cognate_uORF' else ''}",
+            "target_name": t["id"], "region": f"5'UTR pos {t['uaug_pos']}",
+            "key_metric": f"Ribo={int(t['ribo']['sum'])}" if t["target_type"] == "AUG_uORF" else f"{t['ribo'].get('enrichment','')}x enrich",
+            "key_metric_2": f"phyloP={t['conservation'].get('uAUG_window',{}).get('phyloP','N/A')}",
+            "feasibility_light": t["lights"]["designability"],
+            "feasibility_text": f"{t['designability']['clean']}/{t['designability']['total']}",
+            "link": f"target/{t['slug']}.html", "link_type": "internal",
+            "sort_score": t["composite_score"],
+        })
+    for s in structure:
+        all_viable.append({
+            "tier": 1, "mechanism": "5'UTR structure",
+            "target_name": f"Hairpin {s['window_start']}-{s['window_end']}",
+            "region": f"5'UTR pos {s['window_start']}-{s['window_end']}",
+            "key_metric": f"MFE={s['mfe']}", "key_metric_2": f"GC={s['gc_content']}%",
+            "feasibility_light": "yellow" if s["gc_content"] > 80 else "green",
+            "feasibility_text": "High GC" if s["gc_content"] > 80 else "OK",
+            "link": f"https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:{s['genomic_start']-100}-{s['genomic_end']+100}",
+            "link_type": "external",
+            "sort_score": 6.0 + abs(s["mfe"]) / 100,  # Tier 1, sorted by MFE strength
+        })
+    for s in utr3_struct.get("top", []):
+        all_viable.append({
+            "tier": 2, "mechanism": "3'UTR structure",
+            "target_name": f"Hairpin {s['pos']}",
+            "region": f"3'UTR pos {s['pos']}",
+            "key_metric": f"MFE={s['mfe']}", "key_metric_2": f"GC={s['gc']}%",
+            "feasibility_light": "green" if s["gc"] < 75 else "yellow",
+            "feasibility_text": "OK" if s["gc"] < 75 else "High GC",
+            "link": "", "link_type": "none",
+            "sort_score": 3.5 + abs(s["mfe"]) / 100,
+        })
+    for m in mirna:
+        all_viable.append({
+            "tier": 3, "mechanism": "miRNA blocking",
+            "target_name": m["representative"],
+            "region": "3'UTR",
+            "key_metric": f"ctx++={m['context_score']}", "key_metric_2": f"{m['conserved_sites']} sites",
+            "feasibility_light": "red",
+            "feasibility_text": "Weak",
+            "link": "", "link_type": "none",
+            "sort_score": 1.0 + abs(m["context_score"]),
+        })
+    all_viable.sort(key=lambda x: (-x["sort_score"]))  # highest score first (tier 1 naturally on top)
+    print(f"  Built {len(all_viable)} unified viable targets ({sum(1 for v in all_viable if v['tier']==1)} tier 1, {sum(1 for v in all_viable if v['tier']==2)} tier 2, {sum(1 for v in all_viable if v['tier']==3)} tier 3)")
+
     render_site(targets, expression, transcripts, overlap, near_cognate, nmd,
-                structure, structure_profile, mirna, g4, utr3_struct, rbp, polya, aso)
+                structure, structure_profile, mirna, g4, utr3_struct, rbp, polya, aso, all_viable)
     print("Build complete. Output in site/")
 
 if __name__ == "__main__":
