@@ -1,0 +1,11 @@
+gene	source	tissue	value	unit	notes
+RAI1	HPA_consensus	Cerebellum	18.2	nTPM
+RAI1	HPA_consensus	Pituitary gland	17.1	nTPM
+RAI1	HPA_consensus	Endometrium	16.4	nTPM
+RAI1	HPA_consensus	Urinary bladder	15.6	nTPM
+RAI1	HPA_consensus	Cervix	17.1	nTPM
+RAI1	HPA_consensus	Cerebral cortex	14.2	nTPM
+RAI1	HPA_consensus	Hypothalamus	9.2	nTPM
+RAI1	HPA_consensus	Amygdala	7.2	nTPM
+RAI1	HPA_consensus	Midbrain	5.8	nTPM
+RAI1-AS1	not_available				RAI1-AS1 (lncRNA) not in HPA; check GTEx portal manually at https://gtexportal.org/

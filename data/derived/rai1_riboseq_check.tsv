@@ -1,0 +1,8 @@
+candidate_id	uaug_genomic	region	ribo_datapoints	ribo_sum	ribo_max	ribo_mean	triage_verdict	source
+ENST00000353383:262	17681720	chr17:17681670-17681770	81	976	115	12.0	canonical	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+ENST00000471135:217	17683694	chr17:17683644-17683744	19	34	4	1.8	non-canonical_only	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+ENST00000395774:18	17782150	chr17:17782100-17782200	11	19	4	1.7	non-canonical_only	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+ENST00000918590:89	17723811	chr17:17723761-17723861	6	11	4	1.8	non-canonical_only	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+ENST00000918590:144	17723866	chr17:17723816-17723916	9	29	17	3.2	non-canonical_only	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+CDS_start_control	17792949	chr17:17792949-17793049	95	1436	151	15.1	positive_control	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)
+intron_control	17746455	chr17:17746455-17746555	0	0	0	0.0	negative_control	GWIPS-viz via UCSC (gwipsvizRiboseq bigWig)

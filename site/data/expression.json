@@ -1,0 +1,47 @@
+[
+  {
+    "tissue": "Cerebellum",
+    "value": 18.2,
+    "is_brain": true
+  },
+  {
+    "tissue": "Pituitary gland",
+    "value": 17.1,
+    "is_brain": true
+  },
+  {
+    "tissue": "Cervix",
+    "value": 17.1,
+    "is_brain": false
+  },
+  {
+    "tissue": "Endometrium",
+    "value": 16.4,
+    "is_brain": false
+  },
+  {
+    "tissue": "Urinary bladder",
+    "value": 15.6,
+    "is_brain": false
+  },
+  {
+    "tissue": "Cerebral cortex",
+    "value": 14.2,
+    "is_brain": true
+  },
+  {
+    "tissue": "Hypothalamus",
+    "value": 9.2,
+    "is_brain": true
+  },
+  {
+    "tissue": "Amygdala",
+    "value": 7.2,
+    "is_brain": true
+  },
+  {
+    "tissue": "Midbrain",
+    "value": 5.8,
+    "is_brain": true
+  }
+]

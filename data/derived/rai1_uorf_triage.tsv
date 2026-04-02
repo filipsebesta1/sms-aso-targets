@@ -1,0 +1,6 @@
+transcript_id	uaug_pos	uaug_genomic	is_canonical_transcript	uaug_in_canonical_utr	transcript_source	source_quality	canonical_refseq	triage_verdict
+ENST00000353383	262	17681720	True	True	ensembl_havana	high (ensembl_havana)	NM_030665.4	canonical
+ENST00000471135	217	17683694	False	False	havana	medium (havana)		non-canonical_only
+ENST00000395774	18	17782150	False	False	havana	medium (havana)		non-canonical_only
+ENST00000918590	89	17723811	False	False	havana_tagene	low (havana_tagene)		non-canonical_only
+ENST00000918590	144	17723866	False	False	havana_tagene	low (havana_tagene)		non-canonical_only

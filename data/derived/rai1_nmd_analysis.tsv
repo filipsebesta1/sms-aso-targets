@@ -1,0 +1,10 @@
+transcript_id	display_name	biotype	is_canonical	has_translation	n_exons	is_nmd_biotype	ptc_triggers_nmd	ptc_distance_to_last_ejc	stop_exon_index	n_unique_exons	unique_exons	nmd_target_potential	target_type
+ENST00000353383	RAI1-201	protein_coding	True	True	6	False	False		5.0	0		none	splicing
+ENST00000489697	RAI1-204	protein_coding_CDS_not_defined	False	False	2	False	False			2	17681729-17681793;17683546-17685050	none	splicing
+ENST00000471135	RAI1-203	protein_coding	False	True	4	False	False		3.0	3	17682495-17682563;17683546-17683703;17792933-17793143	medium	splicing
+ENST00000395774	RAI1-202	protein_coding	False	True	2	False	False		1.0	2	17782132-17782215;17792933-17795776	medium	splicing
+ENST00000583166	RAI1-206	protein_coding	False	True	2	False	False		1.0	2	17798384-17798513;17803756-17804114	medium	splicing
+ENST00000582514	RAI1-205	protein_coding_CDS_not_defined	False	False	2	False	False			2	17809282-17809439;17809970-17810689	none	splicing
+ENST00000918590	RAI1-207	protein_coding	False	True	5	False	False		4.0	1	17723722-17724159	medium	splicing
+ENST00000955422	RAI1-208	protein_coding	False	True	6	False	False		5.0	2	17723529-17723600;17809970-17811448	medium	splicing
+ENST00000955423	RAI1-209	protein_coding	False	True	5	False	False		4.0	2	17782406-17782491;17809970-17811452	medium	splicing

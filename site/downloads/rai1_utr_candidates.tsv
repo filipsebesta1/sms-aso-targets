@@ -1,0 +1,8 @@
+transcript_id	utr_hash	utr_len	utr_gc	uaug_pos	stop_pos	aa_len	kozak_score_simple	notes
+ENST00000353383	339278c1	484	78.1	262.0	322.0	18.0	1.0	
+ENST00000471135	d6425785	375	63.5	217.0	375.0	51.0	2.0	overlaps_mainAUG_region
+ENST00000395774	e738c78b	100	73.0	18.0	100.0	26.0	2.0	overlaps_mainAUG_region
+ENST00000918590	ed138e1f	454	69.8	89.0	113.0	6.0	0.0	
+ENST00000918590	ed138e1f	454	69.8	144.0	177.0	9.0	3.0	
+ENST00000955422	2b5383b7	220	70.5					no_uORF_found
+ENST00000955423	aee8d448	102	80.4					no_uORF_found

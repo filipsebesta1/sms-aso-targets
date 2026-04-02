@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodology — SMS Research Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">RAI1 <span>ASO Targets</span></a>
+      <a href="index.html" >Dashboard</a>
+      <a href="methodology.html" class="active">Methodology</a>
+      <a href="about.html" >About</a>
+      <a href="compare.html" >Compare</a>
+    </div>
+  </nav>
+
+  
+<div class="page-header">
+  <div class="container">
+    <h1>Methodology</h1>
+    <p class="subtitle">How targets are identified, scored, and ranked</p>
+  </div>
+</div>
+
+
+  <main class="container">
+    
+<section>
+  <h2>Pipeline Overview</h2>
+  <div class="card" style="font-family:var(--mono); font-size:12px; line-height:1.8; overflow-x:auto; white-space:pre;">
+Ensembl REST ──▶ Transcript inventory ──▶ 5'UTR extraction ──▶ uORF scan (ATG→stop)
+                                                │                      │
+                                                ▼                      ▼
+                                     Near-cognate scan           Kozak scoring
+                                     (CUG/GTG/ACG...)          (position -3, +4)
+                                                │                      │
+                                     ┌──────────┴──────────────────────┘
+                                     ▼
+                                Triage (canonical?) ──▶ Ribo-seq ◀── GWIPS-viz
+                                     │                      │
+                                     ▼                      ▼
+                              Conservation ◀──── UCSC phyloP100way
+                                     │
+                                     ▼
+                              Unified scoring ──▶ 12 ranked targets
+                                                        │
+                ┌───────────────┬───────────────┬───────┴───────┐
+                ▼               ▼               ▼               ▼
+         5'UTR structure   G4 scan (neg)   3'UTR structure   PolyA signals
+          (ViennaRNA)                       (ViennaRNA)
+                ▼               ▼               ▼               ▼
+         miRNA sites      NMD analysis     RBP sites      PolyA signals
+         (TargetScan)      (neg)          (ENCODE)
+                                                              │
+                ┌─────────────────────────────────────────────┘
+                ▼
+         ASO candidate design ──▶ Designability scoring ──▶ Website
+          (ViennaRNA duplex)
+  </div>
+</section>
+
+<section>
+  <h2>Unified Scoring Formula</h2>
+  <div class="card">
+    <p>All uORF candidates (AUG and near-cognate) are scored on the same 0-10 scale using five weighted components. This allows direct comparison across target types and incorporates practical ASO designability.</p>
+    <table style="margin:16px 0;">
+      <tr><th>Component</th><th>Weight</th><th>Logic</th></tr>
+      <tr><td>Canonical membership</td><td>3.0 (max)</td><td>1.0 if in canonical transcript, 0.33 if shared with canonical UTR, 0 if non-canonical only. Near-cognate uORFs scanned from canonical UTR get 1.0.</td></tr>
+      <tr><td>Ribo-seq evidence</td><td>2.0 (max)</td><td><strong>AUG uORFs:</strong> ribo_sum / CDS_control_sum, capped at 1.0. <strong>Near-cognate:</strong> (peak_mean &times; enrichment) / CDS_control_sum, capped at 1.0.</td></tr>
+      <tr><td>Start codon strength</td><td>1.0 (max)</td><td>Codon-specific initiation efficiency. AUG = 1.0 (modulated by Kozak: 0.5 + 0.5 &times; kozak/3). CTG/CUG = 0.5. GTG/GUG = 0.4. ACG = 0.3. Others &le; 0.25.</td></tr>
+      <tr><td>Conservation</td><td>1.0 (max)</td><td>min(|phyloP|, 3.0) / 3.0 at the uAUG &plusmn;15 bp window</td></tr>
+      <tr><td>ASO designability</td><td>1.0 (max)</td><td>Fraction of clean ASO candidates (no flags) out of all candidates designed for this position. 1.0 = all clean, 0 = all flagged. Penalizes targets in high-GC regions with homopolymer runs or G4 risk.</td></tr>
+    </table>
+    <p style="font-family:var(--mono); font-size:14px; margin-top:12px;">
+      composite = (3 &times; canonical + 2 &times; ribo_signal + 1 &times; codon_strength + 1 &times; conservation + 1 &times; designability) / 8 &times; 10
+    </p>
+    <h3 style="margin-top:16px;">Start Codon Strength Table</h3>
+    <table>
+      <tr><th>Codon</th><th>Strength</th><th>Notes</th></tr>
+      <tr><td style="font-family:var(--mono);">ATG</td><td>0.5 - 1.0</td><td>Canonical AUG, modulated by Kozak context (score 0-3)</td></tr>
+      <tr><td style="font-family:var(--mono);">CTG / CUG</td><td>0.5</td><td>Most common near-cognate, ~15-20% of AUG efficiency</td></tr>
+      <tr><td style="font-family:var(--mono);">GTG / GUG</td><td>0.4</td><td>Second most common near-cognate</td></tr>
+      <tr><td style="font-family:var(--mono);">ACG</td><td>0.3</td><td>Less common but detectable in Ribo-seq</td></tr>
+      <tr><td style="font-family:var(--mono);">TTG / UUG</td><td>0.25</td><td>Weak near-cognate</td></tr>
+      <tr><td style="font-family:var(--mono);">AAG, AGG, ATC, ATT, ATA</td><td>0.1 - 0.15</td><td>Rare, require strong Ribo-seq validation</td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">
+      This unified formula lets AUG and near-cognate uORFs compete on a level playing field. AUG uORFs benefit from higher start codon strength (up to 1.0 with Kozak 3), while near-cognate candidates can compensate with stronger conservation or Ribo-seq evidence.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Pipeline Steps</h2>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Step 1: Transcript Inventory (Ensembl REST)</h3>
+    <p>Query Ensembl REST API for RAI1 (ENSG00000108557) and RAI1-AS1 (ENSG00000237328). Extract all protein-coding transcripts with coordinates, biotype, canonical status, and annotation source (ensembl_havana, havana, havana_tagene).</p>
+    <p style="font-size:13px; color:var(--text-muted);">Source: <a href="https://rest.ensembl.org" target="_blank" rel="noopener">rest.ensembl.org</a></p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Step 2: uORF Discovery</h3>
+    <p>For each protein-coding transcript with a 5&prime;UTR &ge;10 bp: extract UTR sequence from exon coordinates, scan for all ATG start codons, translate in-frame until stop (TAA/TAG/TGA) or end of UTR. Record uAUG position, uORF length, and whether it overlaps the main AUG region.</p>
+    <p><strong>Kozak scoring:</strong> +2 if position -3 relative to AUG is A or G; +1 if position +4 is G. Maximum score: 3.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Step 2b: Canonical Triage</h3>
+    <p>For each uORF: check if it was discovered in the canonical transcript (ENST00000353383 / NM_030665.4). If not, map its genomic uAUG position and check whether it falls within the canonical transcript's 5&prime;UTR exons. Classify as: canonical, shared_with_canonical, or non-canonical_only.</p>
+    <p>Also annotate transcript source quality: ensembl_havana (high), havana (medium), havana_tagene (low).</p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Step 2c: Ribo-seq Reality Check</h3>
+    <p>Query the GWIPS-viz aggregate ribosome profiling bigWig track (hosted on UCSC as gwipsvizRiboseq) at each uAUG position &plusmn;50 bp. Include CDS start as positive control and intron as negative control.</p>
+    <p style="font-size:13px; color:var(--text-muted);">Source: <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=gwipsvizRiboseq" target="_blank" rel="noopener">UCSC gwipsvizRiboseq track</a></p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Step 3: Conservation Scoring</h3>
+    <p>For each uORF candidate, query UCSC phyloP100way bigWig for three regions: uAUG window (&plusmn;15 bp), uORF body, and main start neighborhood (last 60 nt of UTR). Report mean phyloP score per region.</p>
+    <p>Positive phyloP indicates evolutionary conservation (purifying selection). Scores &gt;1.0 suggest strong functional constraint.</p>
+    <p style="font-size:13px; color:var(--text-muted);">Source: <a href="https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/" target="_blank" rel="noopener">UCSC phyloP100way</a></p>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <h3>Steps 4-6: NAT, Expression, QTL</h3>
+    <p><strong>NAT overlap:</strong> Compute RAI1-AS1 overlap with RAI1 promoter region, exons, and 5&prime;UTR exons. Score quality on a 0-4.5 scale.</p>
+    <p><strong>Expression:</strong> Scrape tissue expression from Human Protein Atlas for RAI1 brain regions.</p>
+    <p><strong>eQTL/sQTL:</strong> Query GTEx API v8/v10. RAI1 has zero significant QTLs in any tissue, confirming tight transcriptional control.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 8: Non-AUG uORF Scan</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>Scan the canonical transcript's 5&prime;UTR for uORFs initiated by near-cognate start codons: CTG/CUG, GTG/GUG, ACG, TTG/UUG, AAG, AGG, ATC, ATT, ATA. Require at least 2 amino acids and an in-frame stop codon.</p>
+    <p style="margin-top:8px;"><strong>Ribo-seq validation:</strong> For each candidate, query GWIPS-viz ribosome profiling signal in a tight window (&plusmn;5 bp around the start codon) and compare to a wider background window (&plusmn;50 bp). Only candidates with &gt;2x enrichment of peak signal over local background are retained. This filters out scanning signal (ribosomes passing through) from genuine initiation events.</p>
+    <p style="margin-top:8px;"><strong>Conservation:</strong> phyloP100way scores queried at the &plusmn;15 bp window around each near-cognate start codon, using the same UCSC bigWig as for AUG uORFs.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 10: RNA Secondary Structure</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>Compute local RNA secondary structure across the canonical 5&prime;UTR using ViennaRNA (RNAfold). A sliding window of 60 nt with 10 nt step size scans the entire UTR. For each window, the minimum free energy (MFE) of the optimal fold is computed.</p>
+    <p style="margin-top:8px;">Regions with highly negative MFE (stable structures) are predicted to impede ribosome scanning. ASOs that hybridize to these regions can melt the structure, increasing ribosome throughput and translation of the downstream main ORF.</p>
+    <p style="margin-top:8px;"><strong>Scoring:</strong> Windows are ranked by MFE (most negative = most stable = best structure-melting ASO target). MFE per nucleotide is reported to normalize for GC content effects.</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">Tool: ViennaRNA 2.7.2 (RNA.fold). Note: this is a thermodynamic prediction, not experimentally validated. SHAPE-seq or DMS-seq data would confirm the structures in vivo.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 11: miRNA Target Sites</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>Conserved miRNA binding sites in the RAI1 3&prime;UTR are retrieved from <a href="https://www.targetscan.org" target="_blank" rel="noopener">TargetScan 8.0</a> (Summary_Counts.default_predictions.txt, filtered for gene symbol RAI1).</p>
+    <p style="margin-top:8px;">Only conserved sites (present across mammalian species) are reported. Each miRNA family is scored by the cumulative weighted context++ score (more negative = stronger predicted repression). The aggregate PCT (probability of conserved targeting) provides an independent measure of functional relevance.</p>
+    <p style="margin-top:8px;"><strong>Therapeutic implication:</strong> Blocking a miRNA binding site with an ASO would prevent miRNA-mediated mRNA degradation or translational repression, increasing RAI1 mRNA stability and/or translation. This mechanism stacks with 5&prime;UTR-based approaches (uORF blocking, structure melting) since it acts on mRNA abundance rather than translation efficiency.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 12: G-Quadruplex Scan</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>The canonical 5&prime;UTR is scanned for G-quadruplex motifs using the consensus pattern G<sub>3+</sub>N<sub>1-7</sub>G<sub>3+</sub>N<sub>1-7</sub>G<sub>3+</sub>N<sub>1-7</sub>G<sub>3+</sub> (and the C-rich complement for i-motifs). G-quadruplexes are extremely stable non-canonical structures that block ribosome scanning more effectively than Watson-Crick hairpins.</p>
+    <p style="margin-top:8px;"><strong>Result for RAI1:</strong> No G4 motifs found despite 78% GC content. The GC richness is distributed across the UTR rather than concentrated in the clustered G-runs required for G4 formation. This rules out G4-resolving ASOs or small molecules (e.g., PDS, TMPyP4) as a therapeutic strategy for RAI1.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 13: 3&prime;UTR Secondary Structure</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>The canonical 3&prime;UTR (1,472 bp) is analyzed for RNA secondary structure using ViennaRNA (RNAfold) with 80 bp sliding windows and 20 bp step size. Stable 3&prime;UTR structures can affect mRNA stability, subcellular localization, and polyadenylation efficiency.</p>
+    <p style="margin-top:8px;"><strong>Therapeutic relevance:</strong> ASOs that disrupt stable 3&prime;UTR structures could alter mRNA half-life or accessibility to the translation/degradation machinery. This is a distinct mechanism from 5&prime;UTR-based approaches and could stack with them.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 14: RNA-Binding Protein Sites</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>ENCODE ChIP-seq clustered transcription factor binding sites (<code>encRegTfbsClustered</code> track on UCSC) are queried across the full RAI1 gene region. Sites are classified by location: 5&prime;UTR/promoter region (first 1 kb), 3&prime;UTR region (last 2 kb), or gene body.</p>
+    <p style="margin-top:8px;"><strong>Limitation:</strong> This track contains ChIP-seq data for transcription factors, not eCLIP data for RNA-binding proteins. True RBP binding sites (e.g., from ENCODE eCLIP experiments) would require querying individual eCLIP tracks, which is a future improvement. The current data is most informative for the promoter/5&prime;UTR region where TF binding affects transcription initiation.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Step 15: Alternative Polyadenylation</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>The 3&prime;UTR sequence is scanned for canonical (AATAAA) and 10 variant polyadenylation signals. Each signal is classified by distance from the annotated transcript end: signals within 50 bp of the end are marked as "likely active."</p>
+    <p style="margin-top:8px;"><strong>Relevance:</strong> If RAI1 uses alternative polyA sites, different 3&prime;UTR lengths would have different miRNA site content and structural properties. Shorter isoforms (using an upstream polyA site) would escape regulation by miRNA sites and structures located downstream of the alternative site.</p>
+    <p style="margin-top:8px;"><strong>Result for RAI1:</strong> The canonical AATAAA signal is at position 1,443 (29 bp from end), consistent with being the primary active site. One upstream variant (AGTAAA at position 1,397) could represent a minor alternative site producing a 3&prime;UTR ~75 bp shorter.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Traffic Light Thresholds</h2>
+  <div class="card">
+    <table>
+      <tr><th>Evidence</th><th style="color:var(--canonical-green);">Green</th><th style="color:var(--warning-yellow);">Yellow</th><th style="color:var(--danger-red);">Red</th></tr>
+      <tr><td>Canonical</td><td>canonical / canonical_utr</td><td>shared_with_canonical</td><td>non-canonical_only</td></tr>
+      <tr><td>Ribo-seq</td><td>AUG: sum &ge; 100; NC: enrichment &ge; 3x</td><td>AUG: 10-100; NC: 2-3x</td><td>AUG: &lt; 10; NC: &lt; 2x</td></tr>
+      <tr><td>Conservation (phyloP)</td><td>&ge; 1.0</td><td>0.2-1.0</td><td>&lt; 0.2</td></tr>
+      <tr><td>Start codon strength</td><td>&ge; 0.8 (AUG + strong Kozak)</td><td>0.4-0.8 (CUG/GTG or weak Kozak AUG)</td><td>&lt; 0.4</td></tr>
+      <tr><td>ASO designability</td><td>&ge; 0.5 (majority clean ASOs)</td><td>0.1-0.5 (some clean ASOs)</td><td>&lt; 0.1 (all flagged)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Data Sources</h2>
+  <div class="card">
+    <table>
+      <tr><th>Source</th><th>URL</th><th>Data used</th></tr>
+      <tr><td>Ensembl REST API</td><td><a href="https://rest.ensembl.org" target="_blank" rel="noopener">rest.ensembl.org</a></td><td>Gene/transcript coordinates, exon structure, UTR sequences</td></tr>
+      <tr><td>UCSC phyloP100way</td><td><a href="https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/" target="_blank" rel="noopener">hgdownload.cse.ucsc.edu</a></td><td>Conservation scores via bigWig</td></tr>
+      <tr><td>GWIPS-viz / UCSC</td><td><a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=gwipsvizRiboseq" target="_blank" rel="noopener">gwipsvizRiboseq</a></td><td>Aggregate ribosome profiling signal</td></tr>
+      <tr><td>Human Protein Atlas</td><td><a href="https://www.proteinatlas.org/ENSG00000108557-RAI1/tissue" target="_blank" rel="noopener">proteinatlas.org</a></td><td>Tissue expression (nTPM)</td></tr>
+      <tr><td>GTEx Portal</td><td><a href="https://gtexportal.org/api/v2/" target="_blank" rel="noopener">gtexportal.org</a></td><td>eQTL/sQTL absence confirmation</td></tr>
+      <tr><td>TargetScan 8.0</td><td><a href="https://www.targetscan.org/vert_80/" target="_blank" rel="noopener">targetscan.org</a></td><td>Conserved miRNA binding site predictions</td></tr>
+      <tr><td>ViennaRNA 2.7.2</td><td><a href="https://www.tbi.univie.ac.at/RNA/" target="_blank" rel="noopener">tbi.univie.ac.at/RNA</a></td><td>RNA secondary structure prediction (RNAfold MFE)</td></tr>
+      <tr><td>ENCODE (via UCSC)</td><td><a href="https://www.encodeproject.org/" target="_blank" rel="noopener">encodeproject.org</a></td><td>TF/RBP binding sites (encRegTfbsClustered track)</td></tr>
+    </table>
+  </div>
+  <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">All coordinates are GRCh38/hg38. Pipeline source code: <code>src/pipeline.py</code></p>
+</section>
+
+<section>
+  <h2>IRES Risk Assessment</h2>
+  <div class="card" style="margin-bottom:12px;">
+    <p>The canonical 5&prime;UTR is assessed for features associated with internal ribosome entry site (IRES) activity. If IRES-mediated translation is the dominant mechanism for RAI1, uORF blocking would be ineffective because ribosomes would enter downstream of the uORFs.</p>
+    <p style="margin-top:8px;">Features scored: UTR length (&gt;150 bp), GC content (&gt;60%), polypyrimidine tracts (&ge;8 nt), structural stability (&lt;-0.4 kcal/mol/nt), and cap-to-AUG distance (&gt;200 nt). RAI1 scores 5/5. No experimentally validated IRES activity has been reported for RAI1 (IRESite database, PubMed search). The feature overlap between IRES-containing UTRs and difficult-to-scan UTRs means this score is a risk flag, not a diagnosis.</p>
+    <p style="margin-top:8px;"><strong>Experimental resolution:</strong> A bicistronic reporter assay (RAI1 5&prime;UTR between two cistrons, with and without functional cap) would definitively determine whether IRES activity is present.</p>
+  </div>
+
+  <h2 id="limitations">Limitations</h2>
+  <div class="card">
+    <ul style="padding-left:20px; font-size:14px; line-height:1.8;">
+      <li>uORFs are computationally predicted, not experimentally validated. Reporter assays are needed to confirm functional impact on RAI1 translation.</li>
+      <li>Ribo-seq signal is from the GWIPS-viz aggregate track (multiple studies, multiple cell types). RAI1-specific cell-type Ribo-seq would be more informative.</li>
+      <li>Conservation scores may be inflated for non-canonical transcripts if their UTR regions overlap coding exons of other isoforms.</li>
+      <li>The composite score weights are heuristic, not statistically derived. They reflect our prior that canonical transcript membership is the strongest predictor of therapeutic relevance.</li>
+      <li>ASO design requires experimental optimization (chemistry, length, modification pattern). The target windows here are starting points, not final designs.</li>
+      <li>RNA secondary structure predictions are thermodynamic (MFE), not experimentally validated. In vivo structures may differ due to RNA-binding proteins and co-transcriptional folding. SHAPE-seq or DMS-seq would provide experimental validation.</li>
+      <li>miRNA target predictions are computational (TargetScan context++ model). Experimental validation (luciferase reporter with miRNA site mutations, or AGO-CLIP data) would confirm functional repression.</li>
+      <li>Near-cognate uORF initiation is harder to validate than AUG uORFs. Ribosome profiling enrichment suggests initiation but does not prove it. Mass spectrometry of the predicted peptides would be confirmatory.</li>
+      <li>The Ribo-seq metric differs between AUG uORFs (absolute sum / CDS control) and near-cognate uORFs (peak enrichment over local background / CDS control). Both are normalized to 0-1 for scoring, but the underlying measurements are not directly comparable. Targets of different types should be compared cautiously.</li>
+      <li>Haploinsufficiency ceiling: only one RAI1 allele is available for upregulation. Maximum theoretical increase is 2x from baseline (~50% to ~100% of normal). uORF derepression typically achieves partial, not complete, derepression. The magnitude of upregulation achievable by ASO-mediated uORF blocking is unknown for RAI1.</li>
+      <li>Composite scores within ~1 point of each other should be considered effectively equivalent. The ranking provides suggested priority, not definitive ordering.</li>
+      <li>The top-ranked miRNA (miR-144-3p) is primarily expressed in hematopoietic cells, not neurons. Its relevance to RAI1 regulation in the brain is uncertain.</li>
+      <li>The G-quadruplex scan uses the canonical consensus motif (G3+N1-7G3+). Non-canonical G4 structures (bulged, two-quartet) would not be detected and cannot be ruled out.</li>
+    </ul>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Data generated by smsresearch pipeline.
+      Sources: <a href="https://rest.ensembl.org">Ensembl</a>,
+      <a href="https://genome.ucsc.edu">UCSC</a>,
+      <a href="https://www.proteinatlas.org">HPA</a>,
+      <a href="https://gtexportal.org">GTEx</a>,
+      <a href="https://gwips.ucc.ie">GWIPS-viz</a>.
+      All coordinates GRCh38/hg38.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  
+</body>
+</html>

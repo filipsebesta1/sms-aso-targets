@@ -1,0 +1,86 @@
+[
+  {
+    "start_codon": "GTG",
+    "utr_pos": 114,
+    "stop_pos": 484,
+    "aa_len": 122,
+    "uaug_genomic": 17681572,
+    "ribo_peak": 37.1,
+    "ribo_background": 10.4,
+    "ribo_enrichment": 3.57,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681372-17681772"
+  },
+  {
+    "start_codon": "ACG",
+    "utr_pos": 110,
+    "stop_pos": 179,
+    "aa_len": 21,
+    "uaug_genomic": 17681568,
+    "ribo_peak": 32.8,
+    "ribo_background": 10.7,
+    "ribo_enrichment": 3.06,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681368-17681768"
+  },
+  {
+    "start_codon": "ATC",
+    "utr_pos": 342,
+    "stop_pos": 484,
+    "aa_len": 46,
+    "uaug_genomic": 17724034,
+    "ribo_peak": 11.4,
+    "ribo_background": 4.3,
+    "ribo_enrichment": 2.62,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723834-17724234"
+  },
+  {
+    "start_codon": "ATT",
+    "utr_pos": 2,
+    "stop_pos": 179,
+    "aa_len": 57,
+    "uaug_genomic": 17681460,
+    "ribo_peak": 12.5,
+    "ribo_background": 4.8,
+    "ribo_enrichment": 2.6,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681260-17681660"
+  },
+  {
+    "start_codon": "CTG",
+    "utr_pos": 358,
+    "stop_pos": 472,
+    "aa_len": 36,
+    "uaug_genomic": 17724050,
+    "ribo_peak": 9.2,
+    "ribo_background": 3.6,
+    "ribo_enrichment": 2.57,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723850-17724250"
+  },
+  {
+    "start_codon": "CTG",
+    "utr_pos": 96,
+    "stop_pos": 484,
+    "aa_len": 128,
+    "uaug_genomic": 17681554,
+    "ribo_peak": 29.2,
+    "ribo_background": 13.7,
+    "ribo_enrichment": 2.13,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681354-17681754"
+  },
+  {
+    "start_codon": "CTG",
+    "utr_pos": 344,
+    "stop_pos": 484,
+    "aa_len": 45,
+    "uaug_genomic": 17724036,
+    "ribo_peak": 9.1,
+    "ribo_background": 4.3,
+    "ribo_enrichment": 2.13,
+    "target_type": "near_cognate_uORF",
+    "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723836-17724236"
+  }
+]

@@ -1,0 +1,3 @@
+qtl_type	tissue	top_variant_id	pvalue	effect_direction_if_available	nes	notes	source
+eQTL	all_tissues	none	NA		NA	No significant eQTLs for RAI1 in any tissue; confirmed via GTEx API v8 and v10	GTEx_v8_v10_API
+sQTL	all_tissues	none	NA		NA	No significant sQTLs for RAI1 in any tissue; confirmed via GTEx API v8 and v10	GTEx_v8_v10_API

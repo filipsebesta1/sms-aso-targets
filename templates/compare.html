@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Compare Targets{% endblock %}
+{% block nav_compare %}class="active"{% endblock %}
+
+{% block header %}
+<div class="page-header">
+  <div class="container">
+    <h1>Compare Targets</h1>
+    <p class="subtitle">Side-by-side evidence comparison</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="compare-grid" style="margin-bottom:24px;">
+    <div>
+      <label style="font-size:13px; color:var(--text-muted); display:block; margin-bottom:4px;">Target A</label>
+      <select id="select-a" class="compare-select">
+        {% for t in targets %}
+        <option value="{{ loop.index0 }}" {% if loop.index0 == 0 %}selected{% endif %}>
+          #{{ t.rank }} {{ t.id }} ({{ t.triage_verdict }})
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label style="font-size:13px; color:var(--text-muted); display:block; margin-bottom:4px;">Target B</label>
+      <select id="select-b" class="compare-select">
+        {% for t in targets %}
+        <option value="{{ loop.index0 }}" {% if loop.index0 == 1 %}selected{% endif %}>
+          #{{ t.rank }} {{ t.id }} ({{ t.triage_verdict }})
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="compare-grid" id="compare-panels">
+    <div id="panel-a" class="card"></div>
+    <div id="panel-b" class="card"></div>
+  </div>
+
+  <div id="compare-charts" style="margin-top:24px;">
+    <div class="compare-grid">
+      <div class="card"><canvas id="ribo-a"></canvas></div>
+      <div class="card"><canvas id="ribo-b"></canvas></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const allTargets = {{ targets_json }};
+let chartA = null, chartB = null;
+
+function renderPanel(target, panelId) {
+  const el = document.getElementById(panelId);
+  const verdictClass = target.triage_verdict === 'canonical' ? 'badge-canonical' :
+                        target.triage_verdict === 'shared_with_canonical' ? 'badge-shared' : 'badge-noncanonical';
+  el.innerHTML = `
+    <h3>#${target.rank} ${target.id} <span class="badge ${verdictClass}">${target.triage_verdict.replace(/_/g, ' ')}</span></h3>
+    <div class="meta" style="margin:8px 0; font-size:13px; color:var(--text-muted);">${target.transcript_name} &middot; ${target.aa_len} aa &middot; UTR ${target.utr_len} bp</div>
+    <div class="lights" style="margin:8px 0;">
+      <span class="light ${target.lights.canonical}">C</span><span class="light-label">Can</span>
+      <span class="light ${target.lights.riboseq}">R</span><span class="light-label">Ribo</span>
+      <span class="light ${target.lights.conservation}">P</span><span class="light-label">Cons</span>
+      <span class="light ${target.lights.kozak}">K</span><span class="light-label">Kozak</span>
+    </div>
+    <table>
+      <tr><td>Composite score</td><td><strong>${target.composite_score}/10</strong></td></tr>
+      <tr><td>Kozak</td><td>${target.kozak}/3</td></tr>
+      <tr><td>Ribo-seq sum</td><td>${target.ribo.sum}</td></tr>
+      <tr><td>phyloP (uAUG)</td><td>${(target.conservation.uAUG_window || {}).phyloP || 'N/A'}</td></tr>
+      <tr><td>Source quality</td><td>${target.source_quality}</td></tr>
+      <tr><td>ASO window</td><td style="font-family:var(--mono);font-size:12px;">${target.aso_window.chr}:${target.aso_window.start.toLocaleString()}-${target.aso_window.end.toLocaleString()}</td></tr>
+    </table>
+    <div style="margin-top:12px;">
+      <a href="target/${target.slug}.html" class="btn btn-primary btn-sm">Full details</a>
+      <a href="${target.ucsc_link}" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+    </div>
+  `;
+}
+
+function renderChart(target, canvasId, existing) {
+  if (existing) existing.destroy();
+  return new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels: ['Ribo-seq', 'CDS control'],
+      datasets: [{ data: [target.ribo.sum, target.cds_control_sum], backgroundColor: ['#3b82f6', '#16a34a'] }]
+    },
+    options: {
+      plugins: { legend: { display: false }, title: { display: true, text: target.id } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Signal sum' } } }
+    }
+  });
+}
+
+function update() {
+  const a = allTargets[document.getElementById('select-a').value];
+  const b = allTargets[document.getElementById('select-b').value];
+  renderPanel(a, 'panel-a');
+  renderPanel(b, 'panel-b');
+  chartA = renderChart(a, 'ribo-a', chartA);
+  chartB = renderChart(b, 'ribo-b', chartB);
+}
+
+document.getElementById('select-a').addEventListener('change', update);
+document.getElementById('select-b').addEventListener('change', update);
+update();
+</script>
+{% endblock %}

@@ -1,0 +1,2 @@
+rai1_chr	rai1_start	rai1_end	rai1_strand	rai1_tss	rai1as1_start	rai1as1_end	rai1as1_strand	overlap_bp	overlaps_promoter_bool	overlaps_exon_bool	overlaps_5utr_exon_bool	overlap_category	overlap_quality_score	score_breakdown
+17	17681458	17811453	1	17681458	17758962	17774684	-1	15722	False	False	False	fully_inside_gene_body	0.5	large_overlap+0.5

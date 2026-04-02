@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — SMS Research Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">RAI1 <span>ASO Targets</span></a>
+      <a href="index.html" >Dashboard</a>
+      <a href="methodology.html" >Methodology</a>
+      <a href="about.html" class="active">About</a>
+      <a href="compare.html" >Compare</a>
+    </div>
+  </nav>
+
+  
+<div class="page-header">
+  <div class="container">
+    <h1>About This Portal</h1>
+    <p class="subtitle">A research planning resource for RAI1 ASO target selection in Smith-Magenis Syndrome</p>
+  </div>
+</div>
+
+
+  <main class="container">
+    
+<section>
+  <h2>Smith-Magenis Syndrome</h2>
+  <div class="card">
+    <p>Smith-Magenis Syndrome (SMS) is a rare neurodevelopmental disorder caused by a deletion at chromosome 17p11.2 or, less commonly, mutations in the RAI1 gene. SMS affects approximately 1 in 15,000-25,000 births.</p>
+    <p style="margin-top:8px;">Key features include intellectual disability, sleep disturbance (inverted melatonin rhythm), behavioral challenges, and distinctive facial features. The syndrome is caused by <strong>haploinsufficiency</strong>: one copy of RAI1 is deleted, and the remaining copy produces insufficient protein.</p>
+  </div>
+</section>
+
+<section>
+  <h2>RAI1 Gene</h2>
+  <div class="card">
+    <table>
+      <tr><td>Gene</td><td>RAI1 (Retinoic Acid Induced 1)</td></tr>
+      <tr><td>Ensembl</td><td><a href="https://ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000108557" target="_blank" rel="noopener">ENSG00000108557</a></td></tr>
+      <tr><td>Location</td><td>chr17:17,681,458-17,811,453 (GRCh38)</td></tr>
+      <tr><td>Canonical transcript</td><td>ENST00000353383 / <a href="https://www.ncbi.nlm.nih.gov/nuccore/NM_030665.4" target="_blank" rel="noopener">NM_030665.4</a></td></tr>
+      <tr><td>Protein function</td><td>Transcriptional regulator involved in circadian rhythm, neuronal development, and lipid metabolism</td></tr>
+      <tr><td>OMIM</td><td><a href="https://omim.org/entry/607642" target="_blank" rel="noopener">607642</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>RAI1 Brain Expression</h2>
+  <div class="card">
+    <div class="chart-container" style="max-width:600px;">
+      <canvas id="expression-chart"></canvas>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+      Source: <a href="https://www.proteinatlas.org/ENSG00000108557-RAI1/tissue" target="_blank" rel="noopener">Human Protein Atlas</a> (consensus tissue RNA, nTPM)
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Therapeutic Rationale</h2>
+  <div class="card">
+    <p><strong>The goal:</strong> Upregulate the remaining functional RAI1 allele to compensate for the deleted copy. Since the remaining gene is structurally intact, the strategy is to increase its protein output without genetic correction.</p>
+
+    <h3 style="margin-top:16px;">Why uORF-targeting ASOs?</h3>
+    <p>The 5&prime; untranslated region (UTR) of many genes contains upstream open reading frames (uORFs) that act as "translation brakes." When ribosomes translate a uORF, they may dissociate before reaching the main coding sequence, reducing protein production.</p>
+    <p style="margin-top:8px;"><strong>Antisense oligonucleotides (ASOs)</strong> can be designed to sterically block the uORF start codon (uAUG), preventing ribosome engagement with the uORF. This allows more ribosomes to reach the main AUG, increasing RAI1 protein production from the existing mRNA.</p>
+
+    <h3 style="margin-top:16px;">Precedent</h3>
+    <p>This approach has been demonstrated for BDNF, where disruption of upstream open reading frames increased protein expression (Feng et al. 2026, <a href="https://pubmed.ncbi.nlm.nih.gov/41383011/" target="_blank" rel="noopener">PMID:41383011</a>). ASO-mediated upregulation has also been validated in vivo for Jag1 in Alagille syndrome (Zhang et al. 2025, <a href="https://pubmed.ncbi.nlm.nih.gov/40980686/" target="_blank" rel="noopener">PMID:40980686</a>). Note: one study found uORF-targeting steric block ASOs did not reproducibly increase RNASEH1 (<a href="https://pubmed.ncbi.nlm.nih.gov/39759875/" target="_blank" rel="noopener">Ahlskog et al. 2025</a>), indicating this approach is gene-dependent.</p>
+
+    <h3 style="margin-top:16px;">Supporting evidence for RAI1</h3>
+    <ul style="padding-left:20px; line-height:1.8;">
+      <li><strong>Zero eQTLs:</strong> RAI1 has no significant expression QTLs in GTEx (v8 or v10), suggesting tight transcriptional control. The bottleneck may be at translation, making post-transcriptional levers attractive.</li>
+      <li><strong>Ribo-seq signal:</strong> The canonical uORF (position 262 in ENST00000353383) shows ribosome occupancy at 68% of CDS-start levels, confirming active translation at this site.</li>
+      <li><strong>NAT lever is weak:</strong> RAI1-AS1 sits entirely within RAI1 introns (no promoter/exon overlap), scoring 0.5/4.5, making it a poor first target.</li>
+    </ul>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px;">
+      <strong>Important:</strong> All evidence on this portal is computational. See the <a href="methodology.html#limitations">Methodology page limitations section</a> for caveats including the gene-dependent nature of uORF-targeting ASOs, the aggregate nature of the Ribo-seq data, and the need for experimental validation.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Recommended Workflow for Researchers</h2>
+  <div class="card">
+    <p>This portal is a <strong>starting point</strong> for an ASO development program, not a replacement for experimental validation. Here is how we recommend using it:</p>
+    <ol style="padding-left:20px; line-height:2; margin-top:8px;">
+      <li><strong>Review the ranked targets</strong> on the <a href="index.html">dashboard</a>. Understand which regions have the strongest evidence (Ribo-seq, conservation) and which have practical ASO design challenges (high GC, homopolymer runs).</li>
+      <li><strong>Run a reporter assay first.</strong> Clone the RAI1 5&prime;UTR into a dual-luciferase reporter. Mutate each computationally predicted uAUG (ATG&rarr;AAG) and near-cognate start individually. Measure which mutations increase downstream translation. This tells you which uORFs are actually repressive, not just predicted. Cost: ~$2K, 2-3 weeks.</li>
+      <li><strong>Design an empirical ASO walk.</strong> Based on reporter results, tile 50-100 ASOs across the validated target regions at 2-3 nt spacing. Use fully modified steric-blocking chemistry (2&prime;-O-Me or LNA/2&prime;-O-Me mixmer, phosphorothioate backbone, NOT gapmers). Transfect into SH-SY5Y cells, measure endogenous RAI1 protein by Western blot. Cost: ~$15-25K for oligos, 3-4 weeks.</li>
+      <li><strong>Run off-target analysis</strong> on any ASO hits. BLAST candidate sequences against the human transcriptome. Discard ASOs with perfect matches to other transcripts.</li>
+      <li><strong>Validate in a disease-relevant model.</strong> Test top ASO hits in patient-derived iPSC-neurons or Rai1+/- mouse models.</li>
+    </ol>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px;">
+      The computational predictions on this portal are hypotheses to be tested, not conclusions. The negative results (no G-quadruplexes, no poison exons, weak miRNA sites) are equally valuable: they narrow the experimental search space and prevent wasted effort on mechanisms that are unlikely to work for RAI1.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>How to Cite</h2>
+  <div class="card">
+    <p>If you use data from this portal in your research, please cite:</p>
+    <p style="font-family:var(--mono); font-size:13px; margin-top:8px; padding:12px; background:var(--bg); border-radius:6px;">
+      SMS ASO Target Prioritization Portal. Available at: [URL]. Data generated using public databases (Ensembl, UCSC, HPA, GTEx, GWIPS-viz). Pipeline source code: src/pipeline.py.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <div class="card">
+    <p>This is an open research project. Contributions, corrections, and suggestions are welcome.</p>
+    <p style="margin-top:8px;">Report issues or contribute via the project's GitHub repository (link TBD after publication).</p>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Data generated by smsresearch pipeline.
+      Sources: <a href="https://rest.ensembl.org">Ensembl</a>,
+      <a href="https://genome.ucsc.edu">UCSC</a>,
+      <a href="https://www.proteinatlas.org">HPA</a>,
+      <a href="https://gtexportal.org">GTEx</a>,
+      <a href="https://gwips.ucc.ie">GWIPS-viz</a>.
+      All coordinates GRCh38/hg38.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  
+<script>
+const expressionData = [{"tissue": "Cerebellum", "value": 18.2, "is_brain": true}, {"tissue": "Pituitary gland", "value": 17.1, "is_brain": true}, {"tissue": "Cervix", "value": 17.1, "is_brain": false}, {"tissue": "Endometrium", "value": 16.4, "is_brain": false}, {"tissue": "Urinary bladder", "value": 15.6, "is_brain": false}, {"tissue": "Cerebral cortex", "value": 14.2, "is_brain": true}, {"tissue": "Hypothalamus", "value": 9.2, "is_brain": true}, {"tissue": "Amygdala", "value": 7.2, "is_brain": true}, {"tissue": "Midbrain", "value": 5.8, "is_brain": true}];
+const labels = expressionData.map(d => d.tissue);
+const values = expressionData.map(d => d.value);
+const colors = expressionData.map(d => d.is_brain ? '#3b82f6' : '#9ca3af');
+
+new Chart(document.getElementById('expression-chart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{ data: values, backgroundColor: colors }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.raw} nTPM` } }
+    },
+    scales: {
+      x: { beginAtZero: true, title: { display: true, text: 'Expression (nTPM)' } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

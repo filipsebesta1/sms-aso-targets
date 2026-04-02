@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — SMS Research Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">RAI1 <span>ASO Targets</span></a>
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="methodology.html" >Methodology</a>
+      <a href="about.html" >About</a>
+      <a href="compare.html" >Compare</a>
+    </div>
+  </nav>
+
+  
+<div class="page-header">
+  <div class="container">
+    <h1>RAI1 ASO Targets for Smith-Magenis Syndrome</h1>
+    <p class="subtitle">Computational evidence map for antisense oligonucleotide target selection &mdash; a research planning resource, not a drug design tool</p>
+  </div>
+</div>
+
+
+  <main class="container">
+    
+<section>
+  <div class="card" style="border-left:4px solid var(--accent); margin-bottom:24px;">
+    <h3>What this portal does</h3>
+    <p>This site aggregates public genomic evidence to help researchers evaluate <strong>all computationally tractable ASO strategies</strong> for RAI1 upregulation in Smith-Magenis Syndrome: uORF blocking (AUG and near-cognate), RNA structure disruption, miRNA site blocking, splice switching, natural antisense targeting, and G-quadruplex resolution. It answers: "Which mechanisms have evidence, which don't, and where should experiments focus?"</p>
+    <h3 style="margin-top:12px;">What this portal does NOT do</h3>
+    <p>This is not a drug design tool. All evidence is computational. Experimental validation, off-target analysis, and ASO chemistry optimization are required before any therapeutic use.</p>
+    <h3 style="margin-top:12px;">Key caveats</h3>
+    <ul style="font-size:13px; color:var(--text-muted); padding-left:20px; line-height:1.8;">
+      <li><strong>Ribo-seq data is aggregate:</strong> Ribosome profiling signal comes from the <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=gwipsvizRiboseq" target="_blank" rel="noopener">GWIPS-viz aggregate track</a>, pooling multiple studies across cell types. Neuron-specific Ribo-seq could show a different translational landscape.</li>
+      <li><strong>Haploinsufficiency ceiling:</strong> SMS patients have one deleted RAI1 copy. The remaining allele must be upregulated from ~50% to ~70-80% of normal. uORF derepression rarely achieves full derepression, so the therapeutic window may be narrow.</li>
+      <li><strong>Targets scored similarly are effectively tied:</strong> Given input uncertainty, targets within ~1 point of each other should be considered equivalent. The ranking suggests priority, not definitive ordering.</li>
+      <li><strong>All coordinates are GRCh38/hg38.</strong></li>
+    </ul>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">See <a href="methodology.html#limitations">full limitations</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="summary-ribbon">
+    <div class="stat-box">
+      <div class="value">12</div>
+      <div class="label">ranked uORF targets (AUG + near-cognate)</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">5</div>
+      <div class="label">AUG-initiated uORFs</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">7</div>
+      <div class="label">near-cognate uORFs (Ribo-seq validated)</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">8</div>
+      <div class="label">mechanisms evaluated (4 viable, 4 ruled out)</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ranked Targets</h2>
+  <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">
+    Scored by 5 components: canonical membership (wt 3), Ribo-seq evidence (wt 2), start codon strength (wt 1), conservation (wt 1), ASO designability (wt 1).
+    <strong>Note:</strong> Ribo-seq is measured differently for AUG (absolute sum vs CDS control) and near-cognate (peak enrichment over local background) targets. These metrics are normalized but not directly comparable.
+    Targets within ~1 point are effectively equivalent given input uncertainty.
+  </p>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All (12)</button>
+    <button class="filter-btn" data-filter="aug">AUG only (5)</button>
+    <button class="filter-btn" data-filter="nc">Near-cognate only (7)</button>
+    <button class="filter-btn" data-filter="top5">Top 5</button>
+    <button class="filter-btn" data-filter="druggable">Druggable (has clean ASOs)</button>
+    <label style="margin-left:auto; font-size:13px; color:var(--text-muted);">
+      Sort:
+      <select id="sort-select" style="padding:4px 8px; border-radius:4px; border:1px solid var(--border);">
+        <option value="rank">By rank (composite)</option>
+        <option value="initiation">By start codon strength</option>
+        <option value="ribo">By Ribo-seq signal</option>
+        <option value="conservation">By conservation</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="target-list">
+    
+    <div class="card target-card"
+         data-type="AUG_uORF"
+         data-verdict="canonical"
+         data-ribo="976.0"
+         data-initiation="0.67"
+         data-conservation="0.3202"
+         data-rank="1"
+         data-composite="6.4"
+         data-clean-asos="0">
+      <div class="rank canonical">1</div>
+      <div class="info">
+        <h3>
+          <a href="target/ENST00000353383-262.html">ENST00000353383:262</a>
+          
+          
+            <span class="badge badge-canonical">CANONICAL</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; ATG &middot; 18 aa &middot;
+          chr17:17,681,720 (hg38)
+          
+           &middot; NM_030665.4
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical" aria-label="Canonical: canonical">C</span>
+          <span class="light-label">Can</span>
+          <span class="light green" title="Ribo-seq: 976.0" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.3202" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: ATG (0.67)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light red" title="ASO designability: 0/15 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">CCATGGGGGTCGGGGC</code>
+          <span style="color:var(--text-muted);">(16nt, Q=1.76, <span style="color:var(--danger-red);">high_GC;homopolymer;G4_risk</span>)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">6.4/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:64.0%"></div></div>
+        </div>
+        
+      </div>
+      <div class="actions">
+        <a href="target/ENST00000353383-262.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681505-17681935" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="23.64"
+         data-initiation="0.5"
+         data-conservation="1.5819"
+         data-rank="2"
+         data-composite="6.3"
+         data-clean-asos="28">
+      <div class="rank ">2</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-CTG-358.html">CTG@358</a>
+          
+            <span class="badge badge-shared">CTG</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; CTG &middot; 36 aa &middot;
+          chr17:17,724,050 (hg38)
+           &middot; 2.57x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 23.64" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light green" title="phyloP: 1.5819" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: CTG (0.5)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 28/28 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">CGGTGGCCAGATGAGATCCT</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.9)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">6.3/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:63.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate CTG, 2.57x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-CTG-358.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723835-17724265" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="19.38"
+         data-initiation="0.5"
+         data-conservation="1.454"
+         data-rank="3"
+         data-composite="6.3"
+         data-clean-asos="38">
+      <div class="rank ">3</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-CTG-344.html">CTG@344</a>
+          
+            <span class="badge badge-shared">CTG</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; CTG &middot; 45 aa &middot;
+          chr17:17,724,036 (hg38)
+           &middot; 2.13x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 19.38" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light green" title="phyloP: 1.454" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: CTG (0.5)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 38/38 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TGGCCAGATGAGATCCTC</code>
+          <span style="color:var(--text-muted);">(18nt, Q=1.911)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">6.3/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:63.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate CTG, 2.13x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-CTG-344.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723821-17724251" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="132.45"
+         data-initiation="0.4"
+         data-conservation="0.2868"
+         data-rank="4"
+         data-composite="5.8"
+         data-clean-asos="30">
+      <div class="rank ">4</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-GTG-114.html">GTG@114</a>
+          
+            <span class="badge badge-shared">GTG</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; GTG &middot; 122 aa &middot;
+          chr17:17,681,572 (hg38)
+           &middot; 3.57x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light green" title="Ribo-seq: 132.45" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.2868" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: GTG (0.4)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 30/32 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TCGCTCTCCCACTCGTCTCT</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.905)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">5.8/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:58.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate GTG, 3.57x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-GTG-114.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681357-17681787" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="29.87"
+         data-initiation="0.1"
+         data-conservation="1.4943"
+         data-rank="5"
+         data-composite="5.8"
+         data-clean-asos="35">
+      <div class="rank ">5</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-ATC-342.html">ATC@342</a>
+          
+            <span class="badge badge-shared">ATC</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; ATC &middot; 46 aa &middot;
+          chr17:17,724,034 (hg38)
+           &middot; 2.62x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 29.87" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light green" title="phyloP: 1.4943" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light red" title="Start codon: ATC (0.1)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 35/35 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TGGCCAGATGAGATCCTC</code>
+          <span style="color:var(--text-muted);">(18nt, Q=1.911)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">5.8/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:58.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate ATC, 2.62x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-ATC-342.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723819-17724249" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="100.37"
+         data-initiation="0.3"
+         data-conservation="0.2823"
+         data-rank="6"
+         data-composite="5.4"
+         data-clean-asos="30">
+      <div class="rank ">6</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-ACG-110.html">ACG@110</a>
+          
+            <span class="badge badge-shared">ACG</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; ACG &middot; 21 aa &middot;
+          chr17:17,681,568 (hg38)
+           &middot; 3.06x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light green" title="Ribo-seq: 100.37" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.2823" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light red" title="Start codon: ACG (0.3)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 30/38 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TCGCTCTCCCACTCGTCTCT</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.905)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">5.4/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:54.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate ACG, 3.06x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-ACG-110.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681353-17681783" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="62.2"
+         data-initiation="0.5"
+         data-conservation="0.3928"
+         data-rank="7"
+         data-composite="5.2"
+         data-clean-asos="10">
+      <div class="rank ">7</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-CTG-96.html">CTG@96</a>
+          
+            <span class="badge badge-shared">CTG</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; CTG &middot; 128 aa &middot;
+          chr17:17,681,554 (hg38)
+           &middot; 2.13x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 62.2" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.3928" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: CTG (0.5)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light yellow" title="ASO designability: 10/22 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TCGTCTCTCGGAGCCC</code>
+          <span style="color:var(--text-muted);">(16nt, Q=1.79)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">5.2/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:52.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate CTG, 2.13x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-CTG-96.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681339-17681769" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="near_cognate_uORF"
+         data-verdict="canonical_utr"
+         data-ribo="32.5"
+         data-initiation="0.1"
+         data-conservation="0.6453"
+         data-rank="8"
+         data-composite="4.2"
+         data-clean-asos="0">
+      <div class="rank ">8</div>
+      <div class="info">
+        <h3>
+          <a href="target/nc-ATT-2.html">ATT@2</a>
+          
+            <span class="badge badge-shared">ATT</span>
+          
+          
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-201 &middot; ATT &middot; 57 aa &middot;
+          chr17:17,681,460 (hg38)
+           &middot; 2.6x enrichment
+          
+        </div>
+        <div class="lights">
+          <span class="light green" title="Canonical: canonical_utr" aria-label="Canonical: canonical_utr">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 32.5" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.6453" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light red" title="Start codon: ATT (0.1)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light red" title="ASO designability: 0/5 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">GTCCGCGGGTGCCGCGAGGA</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.065, <span style="color:var(--danger-red);">high_GC;self_folding</span>)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">4.2/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:42.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">near-cognate ATT, 2.6x Ribo-seq enrichment</div>
+      </div>
+      <div class="actions">
+        <a href="target/nc-ATT-2.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681245-17681675" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="AUG_uORF"
+         data-verdict="non-canonical_only"
+         data-ribo="29.0"
+         data-initiation="1.0"
+         data-conservation="2.8244"
+         data-rank="9"
+         data-composite="3.2"
+         data-clean-asos="9">
+      <div class="rank ">9</div>
+      <div class="info">
+        <h3>
+          <a href="target/ENST00000918590-144.html">ENST00000918590:144</a>
+          
+          
+            <span class="badge badge-noncanonical">non-canonical</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-207 &middot; ATG &middot; 9 aa &middot;
+          chr17:17,723,866 (hg38)
+          
+          
+        </div>
+        <div class="lights">
+          <span class="light red" title="Canonical: non-canonical_only" aria-label="Canonical: non-canonical_only">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 29.0" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light green" title="phyloP: 2.8244" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light green" title="Start codon: ATG (1.0)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 9/15 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">GCTCGCCTCTCGCCCTCGCT</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.83)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">3.2/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:32.0%"></div></div>
+        </div>
+        
+      </div>
+      <div class="actions">
+        <a href="target/ENST00000918590-144.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723651-17724081" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="AUG_uORF"
+         data-verdict="non-canonical_only"
+         data-ribo="34.0"
+         data-initiation="0.83"
+         data-conservation="0.0778"
+         data-rank="10"
+         data-composite="2.3"
+         data-clean-asos="28">
+      <div class="rank ">10</div>
+      <div class="info">
+        <h3>
+          <a href="target/ENST00000471135-217.html">ENST00000471135:217</a>
+          
+          
+            <span class="badge badge-noncanonical">non-canonical</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-203 &middot; ATG &middot; 51 aa &middot;
+          chr17:17,683,694 (hg38)
+          
+          
+        </div>
+        <div class="lights">
+          <span class="light red" title="Canonical: non-canonical_only" aria-label="Canonical: non-canonical_only">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 34.0" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light red" title="phyloP: 0.0778" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light green" title="Start codon: ATG (0.83)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light green" title="ASO designability: 28/30 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">AGGCAGGAAGGAGGGTGGGC</code>
+          <span style="color:var(--text-muted);">(20nt, Q=1.94)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">2.3/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:23.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">overlaps_mainAUG_region</div>
+      </div>
+      <div class="actions">
+        <a href="target/ENST00000471135-217.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17683479-17683909" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="AUG_uORF"
+         data-verdict="non-canonical_only"
+         data-ribo="19.0"
+         data-initiation="0.83"
+         data-conservation="0.7199"
+         data-rank="11"
+         data-composite="1.5"
+         data-clean-asos="2">
+      <div class="rank ">11</div>
+      <div class="info">
+        <h3>
+          <a href="target/ENST00000395774-18.html">ENST00000395774:18</a>
+          
+          
+            <span class="badge badge-noncanonical">non-canonical</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-202 &middot; ATG &middot; 26 aa &middot;
+          chr17:17,782,150 (hg38)
+          
+          
+        </div>
+        <div class="lights">
+          <span class="light red" title="Canonical: non-canonical_only" aria-label="Canonical: non-canonical_only">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 19.0" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light yellow" title="phyloP: 0.7199" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light green" title="Start codon: ATG (0.83)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light yellow" title="ASO designability: 2/15 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TGGTGTCCGCGGGTGC</code>
+          <span style="color:var(--text-muted);">(16nt, Q=1.769)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">1.5/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:15.0%"></div></div>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">overlaps_mainAUG_region</div>
+      </div>
+      <div class="actions">
+        <a href="target/ENST00000395774-18.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17781935-17782365" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+    <div class="card target-card"
+         data-type="AUG_uORF"
+         data-verdict="non-canonical_only"
+         data-ribo="11.0"
+         data-initiation="0.5"
+         data-conservation="1.8545"
+         data-rank="12"
+         data-composite="1.4"
+         data-clean-asos="0">
+      <div class="rank ">12</div>
+      <div class="info">
+        <h3>
+          <a href="target/ENST00000918590-89.html">ENST00000918590:89</a>
+          
+          
+            <span class="badge badge-noncanonical">non-canonical</span>
+          
+        </h3>
+        <div class="meta">
+          RAI1-207 &middot; ATG &middot; 6 aa &middot;
+          chr17:17,723,811 (hg38)
+          
+          
+        </div>
+        <div class="lights">
+          <span class="light red" title="Canonical: non-canonical_only" aria-label="Canonical: non-canonical_only">C</span>
+          <span class="light-label">Can</span>
+          <span class="light yellow" title="Ribo-seq: 11.0" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light green" title="phyloP: 1.8545" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light yellow" title="Start codon: ATG (0.5)" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light red" title="ASO designability: 0/12 clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">TCTCGGAGCCCAGCCGCG</code>
+          <span style="color:var(--text-muted);">(18nt, Q=1.656, <span style="color:var(--danger-red);">high_GC</span>)</span>
+        </div>
+        
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">1.4/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:14.0%"></div></div>
+        </div>
+        
+      </div>
+      <div class="actions">
+        <a href="target/ENST00000918590-89.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723596-17724026" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section>
+  <h2>5&prime;UTR Secondary Structure Hotspots</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Stable RNA hairpins in the 5&prime;UTR slow ribosome scanning and reduce translation.
+    ASOs that melt these structures can increase protein output, complementary to uORF blocking.
+    Windows scored by minimum free energy (MFE) using ViennaRNA. More negative = more stable = better ASO target.
+  </p>
+  <div class="card">
+    <div class="chart-container" style="max-width:700px; margin-bottom:16px;">
+      <canvas id="structure-chart"></canvas>
+    </div>
+    <table>
+      <tr><th>Rank</th><th>UTR Position</th><th>MFE (kcal/mol)</th><th>MFE/nt</th><th>GC%</th><th>UCSC</th></tr>
+      
+      <tr>
+        <td>1</td>
+        <td>190-250</td>
+        <td><strong>-36.1</strong></td>
+        <td>-0.602</td>
+        <td>88.3%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681548-17681807" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      
+      <tr>
+        <td>2</td>
+        <td>180-240</td>
+        <td><strong>-35.7</strong></td>
+        <td>-0.595</td>
+        <td>86.7%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681538-17681797" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      
+      <tr>
+        <td>3</td>
+        <td>170-230</td>
+        <td><strong>-33.1</strong></td>
+        <td>-0.552</td>
+        <td>83.3%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681528-17681787" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      
+      <tr>
+        <td>4</td>
+        <td>130-190</td>
+        <td><strong>-31.8</strong></td>
+        <td>-0.53</td>
+        <td>81.7%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681488-17681747" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      
+      <tr>
+        <td>5</td>
+        <td>150-210</td>
+        <td><strong>-31.1</strong></td>
+        <td>-0.518</td>
+        <td>86.7%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17681508-17681767" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      
+    </table>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+      The most stable region (pos 190-250, MFE = -36.1 kcal/mol) overlaps with the canonical uORF at position 262.
+      This overlap has two implications: (1) the stable structure may slow ribosome scanning, increasing the probability that ribosomes engage the uORF rather than reading through to the main AUG, making this uORF more repressive than its weak Kozak (1/3) would suggest;
+      (2) an ASO targeting this region could simultaneously disrupt the structure AND block the uORF start codon, a dual-mechanism approach.
+      Importantly, structure disruption works regardless of whether translation is cap-dependent or IRES-mediated, making it a safer bet than uORF blocking alone given the IRES risk flagged below.
+    </p>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>miRNA Binding Sites (3&prime;UTR)</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Conserved miRNA binding sites in the RAI1 3&prime;UTR that may repress mRNA stability or translation.
+    Blocking these sites with ASOs could stabilize RAI1 mRNA, stacking with 5&prime;UTR-based upregulation.
+    Data from <a href="https://www.targetscan.org" target="_blank" rel="noopener">TargetScan 8.0</a>.
+  </p>
+  <div class="card">
+    <table>
+      <tr><th>miRNA</th><th>Seed family</th><th>Context++ score</th><th>Conserved sites</th><th>8mer sites</th><th>Aggregate PCT</th></tr>
+      
+      <tr>
+        <td><strong>gga-miR-144-3p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">UACAGUA</td>
+        <td>-0.473</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0.515</td>
+      </tr>
+      
+      <tr>
+        <td><strong>mml-miR-369-3p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">AUAAUAC</td>
+        <td>-0.061</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0.0</td>
+      </tr>
+      
+      <tr>
+        <td><strong>mmu-miR-344d-3p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">AUAUAAC</td>
+        <td>-0.027</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0.0</td>
+      </tr>
+      
+      <tr>
+        <td><strong>mmu-miR-374c-5p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">UAAUACA</td>
+        <td>-0.018</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0.0</td>
+      </tr>
+      
+      <tr>
+        <td><strong>mmu-miR-374b-5p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">UAUAAUA</td>
+        <td>-0.018</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0.0</td>
+      </tr>
+      
+      <tr>
+        <td><strong>mmu-miR-325-3p</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">UUAUUGA</td>
+        <td>-0.016</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0.0</td>
+      </tr>
+      
+    </table>
+    
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px; padding:8px; background:var(--bg); border-radius:4px;">
+      RAI1 has a relatively short 3&prime;UTR (1,472 nt) with only 6 conserved miRNA families.
+      The strongest (gga-miR-144-3p, context++ = -0.473) has moderate predicted repression.
+      <strong>Tissue caveat:</strong> miR-144-3p is primarily expressed in hematopoietic cells, not neurons. Its functional relevance in the brain (the target tissue for SMS) is uncertain.
+      Additionally, blocking a miRNA site with a steric blocker requires competing with Argonaute-loaded RISC, a fundamentally different pharmacological challenge than 5&prime;UTR uORF blocking.
+      miRNA site blocking is a weak strategy for RAI1.
+    </p>
+    
+  </div>
+</section>
+
+
+
+<section>
+  <h2>3&prime;UTR Secondary Structure</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Stable structures in the 3&prime;UTR can affect mRNA stability, localization, and polyadenylation.
+    ASOs disrupting these structures could alter mRNA half-life. Computed with ViennaRNA (80 bp windows).
+  </p>
+  <div class="card">
+    <div class="chart-container" style="max-width:700px; margin-bottom:16px;">
+      <canvas id="utr3-structure-chart"></canvas>
+    </div>
+    <table>
+      <tr><th>Rank</th><th>3&prime;UTR Position</th><th>MFE (kcal/mol)</th><th>MFE/nt</th><th>GC%</th></tr>
+      
+      <tr>
+        <td>1</td>
+        <td>120-200</td>
+        <td><strong>-42.0</strong></td>
+        <td>-0.525</td>
+        <td>67.5%</td>
+      </tr>
+      
+      <tr>
+        <td>2</td>
+        <td>260-340</td>
+        <td><strong>-38.7</strong></td>
+        <td>-0.484</td>
+        <td>77.5%</td>
+      </tr>
+      
+      <tr>
+        <td>3</td>
+        <td>80-160</td>
+        <td><strong>-38.2</strong></td>
+        <td>-0.478</td>
+        <td>70.0%</td>
+      </tr>
+      
+      <tr>
+        <td>4</td>
+        <td>100-180</td>
+        <td><strong>-37.7</strong></td>
+        <td>-0.471</td>
+        <td>70.0%</td>
+      </tr>
+      
+      <tr>
+        <td>5</td>
+        <td>980-1060</td>
+        <td><strong>-37.7</strong></td>
+        <td>-0.471</td>
+        <td>73.8%</td>
+      </tr>
+      
+    </table>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>RNA-Binding Protein Sites (ENCODE)</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Transcription factor and RBP binding sites in RAI1 UTR regions from ENCODE ChIP-seq clusters.
+    162 sites in UTR regions out of 1689 total across the gene.
+  </p>
+  <div class="evidence-grid">
+    
+    <div class="evidence-panel">
+      <h4>5&prime;UTR / Promoter Region</h4>
+      <table>
+        <tr><th>Factor</th><th>Sites</th><th>Score</th></tr>
+        
+        <tr><td>SMC3</td><td>2</td><td>1000</td></tr>
+        
+        <tr><td>GATAD2B</td><td>2</td><td>1000</td></tr>
+        
+        <tr><td>ZFX</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>SUZ12</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>CTCF</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>RAD21</td><td>2</td><td>1000</td></tr>
+        
+        <tr><td>POLR2A</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>BHLHE40</td><td>2</td><td>957</td></tr>
+        
+        <tr><td>GABPA</td><td>1</td><td>925</td></tr>
+        
+        <tr><td>PHF8</td><td>2</td><td>923</td></tr>
+        
+      </table>
+    </div>
+    
+    
+    <div class="evidence-panel">
+      <h4>3&prime;UTR Region</h4>
+      <table>
+        <tr><th>Factor</th><th>Sites</th><th>Score</th></tr>
+        
+        <tr><td>AGO1</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>AGO2</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>KDM1A</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>JUND</td><td>2</td><td>1000</td></tr>
+        
+        <tr><td>RBM22</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>SP1</td><td>1</td><td>1000</td></tr>
+        
+        <tr><td>ZBTB33</td><td>2</td><td>1000</td></tr>
+        
+        <tr><td>RBM39</td><td>1</td><td>874</td></tr>
+        
+        <tr><td>SRSF4</td><td>1</td><td>790</td></tr>
+        
+        <tr><td>MYC</td><td>1</td><td>673</td></tr>
+        
+      </table>
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Polyadenylation Signals</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Canonical and variant polyadenylation signals in the RAI1 3&prime;UTR.
+    Alternative polyA site usage can produce shorter 3&prime;UTR isoforms that escape miRNA regulation.
+  </p>
+  <div class="card">
+    <table>
+      <tr><th>Signal</th><th>Type</th><th>3&prime;UTR Position</th><th>Dist. from End</th><th>Status</th></tr>
+      
+      <tr>
+        <td style="font-family:var(--mono);">AATATA</td>
+        <td>variant</td>
+        <td>1283</td>
+        <td>189 bp</td>
+        <td><span style="color:var(--text-muted);">upstream</span></td>
+      </tr>
+      
+      <tr>
+        <td style="font-family:var(--mono);">AGTAAA</td>
+        <td>variant</td>
+        <td>1397</td>
+        <td>75 bp</td>
+        <td><span style="color:var(--text-muted);">upstream</span></td>
+      </tr>
+      
+      <tr>
+        <td style="font-family:var(--mono);">AAAAAG</td>
+        <td>variant</td>
+        <td>1435</td>
+        <td>37 bp</td>
+        <td><span class="badge badge-canonical">LIKELY ACTIVE</span></td>
+      </tr>
+      
+      <tr>
+        <td style="font-family:var(--mono);">AATAAA</td>
+        <td>canonical (most common)</td>
+        <td>1443</td>
+        <td>29 bp</td>
+        <td><span class="badge badge-canonical">LIKELY ACTIVE</span></td>
+      </tr>
+      
+    </table>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="nat-sidebar">
+    <h3>G-Quadruplex Scan: Negative</h3>
+    <p>No G-quadruplex motifs (G3+N1-7G3+N1-7G3+N1-7G3+) found in the canonical 5&prime;UTR despite 78% GC content.
+    The GC richness is distributed, not in clustered G-runs. G4-resolving ASOs are not applicable for RAI1.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="card" style="border-left:4px solid var(--warning-yellow); background:#fffbeb;">
+    <h3 style="color:var(--warning-yellow);">IRES Risk Assessment: High (5/5 features)</h3>
+    <p>The RAI1 5&prime;UTR scores 5/5 on IRES-associated features: long leader (484 bp), high GC (78%), highly structured (MFE -0.6/nt), polypyrimidine tract at position 210, and 262 nt cap-to-AUG distance. If RAI1 uses cap-independent (IRES-mediated) translation, uORF blocking would be ineffective because ribosomes would bypass uORFs entirely.</p>
+    <p style="margin-top:8px;"><strong>However:</strong> No RAI1 IRES activity has been reported (zero publications). The same features are also consistent with a difficult-to-scan UTR where uORFs have maximum regulatory impact. The Ribo-seq signal at the canonical uORF (68% of CDS levels) is more consistent with cap-dependent scanning than IRES-mediated internal entry.</p>
+    <p style="margin-top:8px;"><strong>To resolve:</strong> Include a bicistronic reporter construct in the Phase 1 validation. Place the RAI1 5&prime;UTR between two reporter genes. If downstream reporter is expressed without a functional upstream cap, IRES activity is confirmed and the uORF strategy should be deprioritized in favor of structure-disruption ASOs (which work regardless of translation mechanism).</p>
+  </div>
+</section>
+
+
+<section>
+  <h2>Splice / NMD Analysis</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Analysis of RAI1 transcript isoforms for nonsense-mediated decay (NMD) features and poison exons.
+    If a transcript has a premature termination codon >50 nt upstream of the last exon junction, it is an NMD substrate.
+    Splice-switching ASOs could redirect splicing away from these nonproductive isoforms.
+  </p>
+  <div class="card">
+    <table>
+      <tr>
+        <th>Transcript</th><th>Name</th><th>Biotype</th><th>Exons</th>
+        <th>NMD?</th><th>Unique Exons</th><th>Potential</th>
+      </tr>
+      
+      <tr style="font-weight:600;">
+        <td>ENST00000353383</td>
+        <td>RAI1-201</td>
+        <td>protein_coding</td>
+        <td>6</td>
+        <td>No</td>
+        <td>0</td>
+        <td>
+          <span style="color:var(--text-muted);">none</span>
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000489697</td>
+        <td>RAI1-204</td>
+        <td>protein_coding_CDS_not_defined</td>
+        <td>2</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span style="color:var(--text-muted);">none</span>
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000471135</td>
+        <td>RAI1-203</td>
+        <td>protein_coding</td>
+        <td>4</td>
+        <td>No</td>
+        <td>3</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000395774</td>
+        <td>RAI1-202</td>
+        <td>protein_coding</td>
+        <td>2</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000583166</td>
+        <td>RAI1-206</td>
+        <td>protein_coding</td>
+        <td>2</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000582514</td>
+        <td>RAI1-205</td>
+        <td>protein_coding_CDS_not_defined</td>
+        <td>2</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span style="color:var(--text-muted);">none</span>
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000918590</td>
+        <td>RAI1-207</td>
+        <td>protein_coding</td>
+        <td>5</td>
+        <td>No</td>
+        <td>1</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000955422</td>
+        <td>RAI1-208</td>
+        <td>protein_coding</td>
+        <td>6</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td>ENST00000955423</td>
+        <td>RAI1-209</td>
+        <td>protein_coding</td>
+        <td>5</td>
+        <td>No</td>
+        <td>2</td>
+        <td>
+          <span class="badge badge-shared">MEDIUM</span>
+          
+        </td>
+      </tr>
+      
+    </table>
+    
+    
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px; padding:8px; background:var(--bg); border-radius:4px;">
+      No classic poison exons detected (no transcripts with PTCs >50 nt upstream of the last exon-exon junction).
+      Six isoforms have unique exons relative to the canonical transcript, but their stop codons are in the last exon, so they are not NMD substrates by the standard rule.
+      Splice-switching ASOs are not a primary recommendation for RAI1.
+    </p>
+    
+  </div>
+</section>
+
+
+<section>
+  <div class="nat-sidebar">
+    <h3>NAT Lever: RAI1-AS1</h3>
+    <p>RAI1-AS1 overlap scored <span class="score">0.5/4.5</span> (gene body only, no promoter or exon overlap).
+    Not recommended as first target. <a href="methodology.html">See methodology</a> for scoring details.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Download Data</h2>
+  <div class="download-grid">
+    
+    <div class="download-item"><a href="downloads/rai1_uorf_triage.tsv">rai1_uorf_triage.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_utr_candidates.tsv">rai1_utr_candidates.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_riboseq_check.tsv">rai1_riboseq_check.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_utr_conservation.tsv">rai1_utr_conservation.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_near_cognate_uorfs.tsv">rai1_near_cognate_uorfs.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_aso_candidates.tsv">rai1_aso_candidates.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_utr_structure.tsv">rai1_utr_structure.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_3utr_structure.tsv">rai1_3utr_structure.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_mirna_targets.tsv">rai1_mirna_targets.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_rbp_sites.tsv">rai1_rbp_sites.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_polya.tsv">rai1_polya.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_nmd_analysis.tsv">rai1_nmd_analysis.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_transcripts.tsv">rai1_transcripts.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1as1_transcripts.tsv">rai1as1_transcripts.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_as1_overlap.tsv">rai1_as1_overlap.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_as1_expression.tsv">rai1_as1_expression.tsv</a></div>
+    
+    <div class="download-item"><a href="downloads/rai1_eqtl_sqtl_summary.tsv">rai1_eqtl_sqtl_summary.tsv</a></div>
+    
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Data generated by smsresearch pipeline.
+      Sources: <a href="https://rest.ensembl.org">Ensembl</a>,
+      <a href="https://genome.ucsc.edu">UCSC</a>,
+      <a href="https://www.proteinatlas.org">HPA</a>,
+      <a href="https://gtexportal.org">GTEx</a>,
+      <a href="https://gwips.ucc.ie">GWIPS-viz</a>.
+      All coordinates GRCh38/hg38.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  
+<script>
+// Filter and sort
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    const cards = [...document.querySelectorAll('.target-card')];
+    cards.forEach((card, i) => {
+      if (filter === 'all') card.style.display = '';
+      else if (filter === 'aug') card.style.display = card.dataset.type === 'AUG_uORF' ? '' : 'none';
+      else if (filter === 'nc') card.style.display = card.dataset.type === 'near_cognate_uORF' ? '' : 'none';
+      else if (filter === 'top5') card.style.display = parseInt(card.dataset.rank) <= 5 ? '' : 'none';
+      else if (filter === 'druggable') card.style.display = parseInt(card.dataset.cleanAsos) > 0 ? '' : 'none';
+    });
+  });
+});
+document.getElementById('sort-select').addEventListener('change', e => {
+  const list = document.getElementById('target-list');
+  const cards = [...list.querySelectorAll('.target-card')];
+  const key = e.target.value;
+  cards.sort((a, b) => {
+    if (key === 'rank') return parseFloat(a.dataset.rank) - parseFloat(b.dataset.rank);
+    if (key === 'initiation') return parseFloat(b.dataset.initiation) - parseFloat(a.dataset.initiation);
+    if (key === 'ribo') return parseFloat(b.dataset.ribo) - parseFloat(a.dataset.ribo);
+    if (key === 'conservation') return parseFloat(b.dataset.conservation) - parseFloat(a.dataset.conservation);
+  });
+  cards.forEach(c => list.appendChild(c));
+});
+
+// Structure profile chart
+
+(function() {
+  const canvas = document.getElementById('structure-chart');
+  if (!canvas) return;
+  const profile = [{"pos": 0, "mfe": -26.8}, {"pos": 10, "mfe": -28.3}, {"pos": 20, "mfe": -29.8}, {"pos": 30, "mfe": -30.3}, {"pos": 40, "mfe": -30.5}, {"pos": 50, "mfe": -22.8}, {"pos": 60, "mfe": -27.9}, {"pos": 70, "mfe": -22.4}, {"pos": 80, "mfe": -26.6}, {"pos": 90, "mfe": -16.4}, {"pos": 100, "mfe": -15.5}, {"pos": 110, "mfe": -24.3}, {"pos": 120, "mfe": -29.2}, {"pos": 130, "mfe": -31.8}, {"pos": 140, "mfe": -30.6}, {"pos": 150, "mfe": -31.1}, {"pos": 160, "mfe": -30.1}, {"pos": 170, "mfe": -33.1}, {"pos": 180, "mfe": -35.7}, {"pos": 190, "mfe": -36.1}, {"pos": 200, "mfe": -27.3}, {"pos": 210, "mfe": -25.3}, {"pos": 220, "mfe": -28.5}, {"pos": 230, "mfe": -28.3}, {"pos": 240, "mfe": -23.5}, {"pos": 250, "mfe": -17.5}, {"pos": 260, "mfe": -19.9}, {"pos": 270, "mfe": -21.3}, {"pos": 280, "mfe": -24.7}, {"pos": 290, "mfe": -22.7}, {"pos": 300, "mfe": -20.9}, {"pos": 310, "mfe": -25.9}, {"pos": 320, "mfe": -20.9}, {"pos": 330, "mfe": -17.8}, {"pos": 340, "mfe": -16.9}, {"pos": 350, "mfe": -13.7}, {"pos": 360, "mfe": -5.4}, {"pos": 370, "mfe": -8.5}, {"pos": 380, "mfe": -13.1}, {"pos": 390, "mfe": -15.1}, {"pos": 400, "mfe": -19.6}, {"pos": 410, "mfe": -19.0}, {"pos": 420, "mfe": -15.7}];
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: profile.map(d => d.pos),
+      datasets: [{
+        label: 'MFE (kcal/mol)',
+        data: profile.map(d => d.mfe),
+        borderColor: '#7c3aed',
+        backgroundColor: 'rgba(124,58,237,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: "5' UTR position (bp)" }, ticks: { maxTicksLimit: 10 } },
+        y: { title: { display: true, text: 'MFE (kcal/mol)' }, reverse: true }
+      }
+    }
+  });
+})();
+
+
+// 3'UTR structure chart
+
+(function() {
+  const canvas = document.getElementById('utr3-structure-chart');
+  if (!canvas) return;
+  const profile = [{"pos": 0, "mfe": -25.9}, {"pos": 20, "mfe": -26.9}, {"pos": 40, "mfe": -24.6}, {"pos": 60, "mfe": -25.9}, {"pos": 80, "mfe": -38.2}, {"pos": 100, "mfe": -37.7}, {"pos": 120, "mfe": -42.0}, {"pos": 140, "mfe": -35.1}, {"pos": 160, "mfe": -33.7}, {"pos": 180, "mfe": -34.2}, {"pos": 200, "mfe": -31.7}, {"pos": 220, "mfe": -28.7}, {"pos": 240, "mfe": -37.1}, {"pos": 260, "mfe": -38.7}, {"pos": 280, "mfe": -37.0}, {"pos": 300, "mfe": -30.0}, {"pos": 320, "mfe": -25.7}, {"pos": 340, "mfe": -25.2}, {"pos": 360, "mfe": -34.0}, {"pos": 380, "mfe": -34.8}, {"pos": 400, "mfe": -33.2}, {"pos": 420, "mfe": -26.0}, {"pos": 440, "mfe": -32.1}, {"pos": 460, "mfe": -25.8}, {"pos": 480, "mfe": -32.2}, {"pos": 500, "mfe": -32.7}, {"pos": 520, "mfe": -27.2}, {"pos": 540, "mfe": -34.9}, {"pos": 560, "mfe": -26.2}, {"pos": 580, "mfe": -25.7}, {"pos": 600, "mfe": -29.8}, {"pos": 620, "mfe": -28.7}, {"pos": 640, "mfe": -32.5}, {"pos": 660, "mfe": -28.2}, {"pos": 680, "mfe": -27.6}, {"pos": 700, "mfe": -25.9}, {"pos": 720, "mfe": -14.5}, {"pos": 740, "mfe": -14.5}, {"pos": 760, "mfe": -24.5}, {"pos": 780, "mfe": -21.2}, {"pos": 800, "mfe": -25.7}, {"pos": 820, "mfe": -32.8}, {"pos": 840, "mfe": -24.9}, {"pos": 860, "mfe": -20.6}, {"pos": 880, "mfe": -17.0}, {"pos": 900, "mfe": -16.4}, {"pos": 920, "mfe": -18.1}, {"pos": 940, "mfe": -15.2}, {"pos": 960, "mfe": -26.5}, {"pos": 980, "mfe": -37.7}, {"pos": 1000, "mfe": -29.9}, {"pos": 1020, "mfe": -29.2}, {"pos": 1040, "mfe": -22.4}, {"pos": 1060, "mfe": -14.9}, {"pos": 1080, "mfe": -23.5}, {"pos": 1100, "mfe": -25.5}, {"pos": 1120, "mfe": -19.3}, {"pos": 1140, "mfe": -16.8}, {"pos": 1160, "mfe": -18.5}, {"pos": 1180, "mfe": -10.1}, {"pos": 1200, "mfe": -13.9}, {"pos": 1220, "mfe": -17.9}, {"pos": 1240, "mfe": -17.9}, {"pos": 1260, "mfe": -10.5}, {"pos": 1280, "mfe": -12.2}, {"pos": 1300, "mfe": -13.7}, {"pos": 1320, "mfe": -13.0}, {"pos": 1340, "mfe": -12.4}, {"pos": 1360, "mfe": -6.5}, {"pos": 1380, "mfe": -2.2}];
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: profile.map(d => d.pos),
+      datasets: [{
+        label: 'MFE (kcal/mol)',
+        data: profile.map(d => d.mfe),
+        borderColor: '#dc2626',
+        backgroundColor: 'rgba(220,38,38,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false }, title: { display: true, text: "3' UTR Structure Stability Profile" } },
+      scales: {
+        x: { title: { display: true, text: "3' UTR position (bp)" }, ticks: { maxTicksLimit: 10 } },
+        y: { title: { display: true, text: 'MFE (kcal/mol)' }, reverse: true }
+      }
+    }
+  });
+})();
+
+</script>
+
+</body>
+</html>

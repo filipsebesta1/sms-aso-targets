@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTG@344 — SMS Research Portal</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../index.html" class="logo">RAI1 <span>ASO Targets</span></a>
+      <a href="../index.html" >Dashboard</a>
+      <a href="../methodology.html" >Methodology</a>
+      <a href="../about.html" >About</a>
+      <a href="../compare.html" >Compare</a>
+    </div>
+  </nav>
+
+  
+<div class="page-header">
+  <div class="container">
+    <div style="margin-bottom:8px;"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:13px;">&larr; Back to dashboard</a></div>
+    <div class="target-header">
+      <div class="rank " style="width:56px;height:56px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;">3</div>
+      <div>
+        <h1>CTG@344
+          
+            <span class="badge badge-noncanonical">NON-CANONICAL ONLY</span>
+          
+        </h1>
+        <p class="subtitle">RAI1-201 &middot; chr17:17,724,036 &middot; 45 aa uORF &middot; Composite 6.3/10
+        
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <main class="container">
+    
+<!-- Traffic lights -->
+<section>
+  <div class="lights" style="font-size:14px;">
+    <span class="light green">C</span> <span class="light-label">canonical_utr</span>
+    <span class="light yellow">R</span> <span class="light-label">Ribo-seq: 19 (2.13x)</span>
+    <span class="light green">P</span> <span class="light-label">phyloP: 1.454</span>
+    <span class="light yellow">S</span> <span class="light-label">CTG (0.5)</span>
+    <span class="light green">D</span> <span class="light-label">ASO: 38/38 clean</span>
+  </div>
+</section>
+
+<!-- 5'UTR genome track -->
+<section>
+  <h2>5&prime;UTR Genome Track</h2>
+  <div class="genome-viewer" id="utr-track"></div>
+  <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+    UTR length: 484 bp &middot; GC content: 0% &middot;
+    uAUG at position 344 &middot; Stop at 484
+  </div>
+</section>
+
+<!-- ASO target window -->
+<section>
+  <h2>Predicted Target Window</h2>
+  <div class="card">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div>
+        <h4 style="font-size:14px; color:var(--text-muted); margin-bottom:8px;">Genomic coordinates</h4>
+        <p style="font-family:var(--mono); font-size:14px;">chr17:17,724,021-17,724,051</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">uAUG &plusmn; 15 nt (31 bp window)</p>
+      </div>
+      <div>
+        <h4 style="font-size:14px; color:var(--text-muted); margin-bottom:8px;">Recommended ASO design</h4>
+        <p style="font-size:14px;">16-20 nt fully modified (mixmer)</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">Fully 2&prime;-O-Me or LNA/2&prime;-O-Me mixmer, phosphorothioate backbone (steric blocker, NOT gapmer)</p>
+      </div>
+    </div>
+    <div class="ext-links" style="margin-top:12px;">
+      <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723821-17724251" target="_blank" rel="noopener" class="btn btn-sm btn-external">View in UCSC Browser</a>
+    </div>
+  </div>
+</section>
+
+<!-- ASO candidates for this target -->
+
+<section>
+  <h2>Candidate ASO Sequences</h2>
+  <div class="card">
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">
+      Computationally designed candidates scored by predicted duplex stability (ViennaRNA) and filtered for design issues.
+      These are <strong>starting points for an empirical ASO walk</strong>, not validated therapeutic sequences.
+      Off-target analysis (BLAST) and experimental validation are required before use.
+      38 clean / 38 total candidates.
+      
+    </p>
+    <div style="max-height:300px; overflow-y:auto; border:1px solid var(--border); border-radius:6px;">
+    <table style="font-size:13px; margin:0;">
+      <thead style="position:sticky; top:0; background:var(--bg); z-index:1;">
+      <tr><th>ASO Sequence (5&prime;&rarr;3&prime;)</th><th>Length</th><th>GC%</th><th>Duplex MFE</th><th>Self MFE</th><th>Quality</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TGGCCAGATGAGATCCTC</td>
+        <td>18</td>
+        <td>56%</td>
+        <td>-35.5</td>
+        <td>0.0</td>
+        <td><strong>1.911</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TGGCCAGATGAGATCCTC</td>
+        <td>18</td>
+        <td>56%</td>
+        <td>-35.5</td>
+        <td>0.0</td>
+        <td><strong>1.911</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGATCCT</td>
+        <td>20</td>
+        <td>60%</td>
+        <td>-41.0</td>
+        <td>0.0</td>
+        <td><strong>1.9</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGATCCT</td>
+        <td>20</td>
+        <td>60%</td>
+        <td>-41.0</td>
+        <td>0.0</td>
+        <td><strong>1.9</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGTGGCCAGATGAGATCC</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-37.0</td>
+        <td>0.0</td>
+        <td><strong>1.883</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGTGGCCAGATGAGATCC</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-37.0</td>
+        <td>0.0</td>
+        <td><strong>1.883</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGCCAGATGAGATCCT</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-31.0</td>
+        <td>0.0</td>
+        <td><strong>1.863</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGCCAGATGAGATCCT</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-31.0</td>
+        <td>0.0</td>
+        <td><strong>1.863</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GTGGCCAGATGAGATC</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-30.4</td>
+        <td>0.0</td>
+        <td><strong>1.825</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GTGGCCAGATGAGATC</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-30.4</td>
+        <td>0.0</td>
+        <td><strong>1.825</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GTGGCCAGATGAGATCCTCG</td>
+        <td>20</td>
+        <td>60%</td>
+        <td>-40.6</td>
+        <td>-0.6</td>
+        <td><strong>1.82</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GTGGCCAGATGAGATCCTCG</td>
+        <td>20</td>
+        <td>60%</td>
+        <td>-40.6</td>
+        <td>-0.6</td>
+        <td><strong>1.82</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGA</td>
+        <td>16</td>
+        <td>62%</td>
+        <td>-32.1</td>
+        <td>0.0</td>
+        <td><strong>1.806</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGGTGGCCAGATGAGA</td>
+        <td>16</td>
+        <td>62%</td>
+        <td>-32.1</td>
+        <td>0.0</td>
+        <td><strong>1.806</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CCAGATGAGATCCTCGGCGC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-42.1</td>
+        <td>-0.6</td>
+        <td><strong>1.795</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GCCAGATGAGATCCTCGG</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-36.3</td>
+        <td>-0.6</td>
+        <td><strong>1.784</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GCCAGATGAGATCCTCGG</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-36.3</td>
+        <td>-0.6</td>
+        <td><strong>1.784</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">AGATGAGATCCTCGGC</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-30.4</td>
+        <td>-0.6</td>
+        <td><strong>1.765</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GCGGTGGCCAGATGAGAT</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-36.6</td>
+        <td>-1.0</td>
+        <td><strong>1.761</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GCGGTGGCCAGATGAGAT</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-36.6</td>
+        <td>-1.0</td>
+        <td><strong>1.761</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CTCTTCCAGAACGCGGTG</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-34.6</td>
+        <td>0.0</td>
+        <td><strong>1.75</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">AACGCGGTGGCCAGATGAGA</td>
+        <td>20</td>
+        <td>60%</td>
+        <td>-40.5</td>
+        <td>-1.3</td>
+        <td><strong>1.745</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CAGATGAGATCCTCGGCG</td>
+        <td>18</td>
+        <td>61%</td>
+        <td>-35.4</td>
+        <td>-0.6</td>
+        <td><strong>1.734</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CCAGATGAGATCCTCG</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-29.6</td>
+        <td>-0.6</td>
+        <td><strong>1.715</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CCAGATGAGATCCTCG</td>
+        <td>16</td>
+        <td>56%</td>
+        <td>-29.6</td>
+        <td>-0.6</td>
+        <td><strong>1.715</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGCGGTGGCCAGATGAGATC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-41.9</td>
+        <td>-1.3</td>
+        <td><strong>1.715</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGCGGTGGCCAGATGAGATC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-41.9</td>
+        <td>-1.3</td>
+        <td><strong>1.715</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TCTTCCAGAACGCGGTGGCC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-42.0</td>
+        <td>-1.5</td>
+        <td><strong>1.7</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CCTCTTCCAGAACGCGGTGG</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-41.2</td>
+        <td>-1.1</td>
+        <td><strong>1.7</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TTCCAGAACGCGGTGGCCAG</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-41.8</td>
+        <td>-1.5</td>
+        <td><strong>1.69</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TCCAGAACGCGGTGGCCA</td>
+        <td>18</td>
+        <td>67%</td>
+        <td>-38.2</td>
+        <td>-1.5</td>
+        <td><strong>1.689</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">ACGCGGTGGCCAGATGAG</td>
+        <td>18</td>
+        <td>67%</td>
+        <td>-37.7</td>
+        <td>-1.3</td>
+        <td><strong>1.681</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CGCGGTGGCCAGATGA</td>
+        <td>16</td>
+        <td>69%</td>
+        <td>-33.4</td>
+        <td>-1.3</td>
+        <td><strong>1.632</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">TTCCAGAACGCGGTGG</td>
+        <td>16</td>
+        <td>62%</td>
+        <td>-30.9</td>
+        <td>-1.1</td>
+        <td><strong>1.621</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CTTCCAGAACGCGGTGGC</td>
+        <td>18</td>
+        <td>67%</td>
+        <td>-36.8</td>
+        <td>-1.5</td>
+        <td><strong>1.611</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGCCAGATGAGATCCTCGGC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-43.0</td>
+        <td>-3.1</td>
+        <td><strong>1.59</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">GGCCAGATGAGATCCTCGGC</td>
+        <td>20</td>
+        <td>65%</td>
+        <td>-43.0</td>
+        <td>-3.1</td>
+        <td><strong>1.59</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      <tr >
+        <td style="font-family:var(--mono); font-size:12px; letter-spacing:1px;">CCAGAACGCGGTGGCC</td>
+        <td>16</td>
+        <td>75%</td>
+        <td>-34.7</td>
+        <td>-1.4</td>
+        <td><strong>1.579</strong></td>
+        <td>
+          
+            <span class="badge badge-canonical" style="font-size:10px;">CLEAN</span>
+          
+        </td>
+      </tr>
+      
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- Evidence panels -->
+<section>
+  <h2>Evidence</h2>
+  <div class="evidence-grid">
+    <!-- Ribo-seq -->
+    <div class="evidence-panel">
+      <h4>Ribosome Profiling (GWIPS-viz)</h4>
+      <div class="chart-container"><canvas id="ribo-chart"></canvas></div>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+        Region: chr17:17724006-17724066 &middot;
+        <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=gwipsvizRiboseq" target="_blank" rel="noopener">Track info</a>
+      </p>
+    </div>
+
+    <!-- Conservation -->
+    <div class="evidence-panel">
+      <h4>Conservation (phyloP100way)</h4>
+      <div class="chart-container"><canvas id="cons-chart"></canvas></div>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+        <a href="https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/" target="_blank" rel="noopener">UCSC phyloP100way track</a>
+      </p>
+    </div>
+
+    <!-- Start codon strength -->
+    <div class="evidence-panel">
+      <h4>Start Codon Strength</h4>
+      <div style="font-size:36px; font-weight:700; color:var(--accent); margin:8px 0;">
+        <span style="font-family:var(--mono);">CTG</span>
+        <span style="font-size:20px; color:var(--text-muted);">(0.5)</span>
+      </div>
+      <table>
+        <tr><td>Codon type</td><td>Near-cognate (CTG)</td></tr>
+        <tr><td>Initiation strength</td><td>0.5 / 1.0</td></tr>
+        
+      </table>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+        
+        Near-cognate start codons (CTG) are weaker than AUG but can still initiate translation when validated by Ribo-seq enrichment over local background.
+        
+      </p>
+    </div>
+
+    <!-- Triage -->
+    <div class="evidence-panel">
+      <h4>Transcript Triage</h4>
+      <table>
+        <tr><td>Transcript</td><td>ENST00000353383</td></tr>
+        <tr><td>Display name</td><td>RAI1-201</td></tr>
+        <tr><td>Verdict</td><td>
+          
+            <span class="badge badge-noncanonical">NON-CANONICAL</span>
+          
+        </td></tr>
+        <tr><td>Source quality</td><td>canonical UTR scan</td></tr>
+        
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Literature -->
+<section>
+  <h2>Key References</h2>
+  <div class="card">
+    <table>
+      <tr><td>RAI1 &amp; SMS genetics</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/18231123/" target="_blank" rel="noopener">Elsea &amp; Girirajan 2008 &mdash; Smith-Magenis syndrome (PMID:18231123)</a></td></tr>
+      <tr><td>uORF-targeting ASO precedent</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/41383011/" target="_blank" rel="noopener">Feng et al. 2026 &mdash; BDNF upregulation via uORF disruption (PMID:41383011)</a></td></tr>
+      <tr><td>uORF-ASO negative result</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/39759875/" target="_blank" rel="noopener">Ahlskog et al. 2025 &mdash; uORF-targeting ASOs did not increase RNASEH1 (PMID:39759875)</a></td></tr>
+      <tr><td>ASO upregulation in vivo</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/40980686/" target="_blank" rel="noopener">Zhang et al. 2025 &mdash; ASO upregulation of Jag1 in Alagille syndrome (PMID:40980686)</a></td></tr>
+      <tr><td>Ribo-seq methodology</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/28579404/" target="_blank" rel="noopener">McGlincy &amp; Ingolia 2017 &mdash; Ribosome Profiling (PMID:28579404)</a></td></tr>
+      <tr><td>phyloP conservation</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/19858363/" target="_blank" rel="noopener">Pollard et al. 2010 &mdash; phyloP method (PMID:19858363)</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- External links -->
+<section>
+  <h2>External Resources</h2>
+  <div class="ext-links">
+    <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:17723821-17724251" target="_blank" rel="noopener" class="btn btn-external">UCSC Browser</a>
+    <a href="https://rest.ensembl.org/lookup/id/ENST00000353383?content-type=text/html" target="_blank" rel="noopener" class="btn btn-external">Ensembl</a>
+    <a href="https://gwips.ucc.ie/cgi-bin/hgTracks?db=hg38&position=chr17:17723521-17724551" target="_blank" rel="noopener" class="btn btn-external">GWIPS-viz</a>
+    
+  </div>
+</section>
+
+<!-- Nav -->
+<section>
+  <div style="display:flex; justify-content:space-between; font-size:14px;">
+    
+    
+    
+      <a href="nc-CTG-358.html">&larr; #2 CTG@358</a>
+    
+    
+      <a href="nc-GTG-114.html">#4 GTG@114 &rarr;</a>
+    
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Data generated by smsresearch pipeline.
+      Sources: <a href="https://rest.ensembl.org">Ensembl</a>,
+      <a href="https://genome.ucsc.edu">UCSC</a>,
+      <a href="https://www.proteinatlas.org">HPA</a>,
+      <a href="https://gtexportal.org">GTEx</a>,
+      <a href="https://gwips.ucc.ie">GWIPS-viz</a>.
+      All coordinates GRCh38/hg38.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  
+<script>
+const target = {"aa_len": 45, "aso_window": {"chr": "chr17", "end": 17724051, "start": 17724021}, "best_asos": [{"duplex_mfe": -35.5, "flags": "", "gc": 55.6, "length": 18, "quality": 1.911, "self_mfe": 0.0, "seq": "TGGCCAGATGAGATCCTC", "target_seq": "GAGGATCTCATCTGGCCA"}, {"duplex_mfe": -35.5, "flags": "", "gc": 55.6, "length": 18, "quality": 1.911, "self_mfe": 0.0, "seq": "TGGCCAGATGAGATCCTC", "target_seq": "GAGGATCTCATCTGGCCA"}, {"duplex_mfe": -41.0, "flags": "", "gc": 60.0, "length": 20, "quality": 1.9, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCCACCG"}, {"duplex_mfe": -41.0, "flags": "", "gc": 60.0, "length": 20, "quality": 1.9, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCCACCG"}, {"duplex_mfe": -37.0, "flags": "", "gc": 61.1, "length": 18, "quality": 1.883, "self_mfe": 0.0, "seq": "GGTGGCCAGATGAGATCC", "target_seq": "GGATCTCATCTGGCCACC"}, {"duplex_mfe": -37.0, "flags": "", "gc": 61.1, "length": 18, "quality": 1.883, "self_mfe": 0.0, "seq": "GGTGGCCAGATGAGATCC", "target_seq": "GGATCTCATCTGGCCACC"}, {"duplex_mfe": -31.0, "flags": "", "gc": 56.2, "length": 16, "quality": 1.863, "self_mfe": 0.0, "seq": "GGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCC"}, {"duplex_mfe": -31.0, "flags": "", "gc": 56.2, "length": 16, "quality": 1.863, "self_mfe": 0.0, "seq": "GGCCAGATGAGATCCT", "target_seq": "AGGATCTCATCTGGCC"}, {"duplex_mfe": -30.4, "flags": "", "gc": 56.2, "length": 16, "quality": 1.825, "self_mfe": 0.0, "seq": "GTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCAC"}, {"duplex_mfe": -30.4, "flags": "", "gc": 56.2, "length": 16, "quality": 1.825, "self_mfe": 0.0, "seq": "GTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCAC"}, {"duplex_mfe": -40.6, "flags": "", "gc": 60.0, "length": 20, "quality": 1.82, "self_mfe": -0.6, "seq": "GTGGCCAGATGAGATCCTCG", "target_seq": "CGAGGATCTCATCTGGCCAC"}, {"duplex_mfe": -40.6, "flags": "", "gc": 60.0, "length": 20, "quality": 1.82, "self_mfe": -0.6, "seq": "GTGGCCAGATGAGATCCTCG", "target_seq": "CGAGGATCTCATCTGGCCAC"}, {"duplex_mfe": -32.1, "flags": "", "gc": 62.5, "length": 16, "quality": 1.806, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCG"}, {"duplex_mfe": -32.1, "flags": "", "gc": 62.5, "length": 16, "quality": 1.806, "self_mfe": 0.0, "seq": "CGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCG"}, {"duplex_mfe": -42.1, "flags": "", "gc": 65.0, "length": 20, "quality": 1.795, "self_mfe": -0.6, "seq": "CCAGATGAGATCCTCGGCGC", "target_seq": "GCGCCGAGGATCTCATCTGG"}, {"duplex_mfe": -36.3, "flags": "", "gc": 61.1, "length": 18, "quality": 1.784, "self_mfe": -0.6, "seq": "GCCAGATGAGATCCTCGG", "target_seq": "CCGAGGATCTCATCTGGC"}, {"duplex_mfe": -36.3, "flags": "", "gc": 61.1, "length": 18, "quality": 1.784, "self_mfe": -0.6, "seq": "GCCAGATGAGATCCTCGG", "target_seq": "CCGAGGATCTCATCTGGC"}, {"duplex_mfe": -30.4, "flags": "", "gc": 56.2, "length": 16, "quality": 1.765, "self_mfe": -0.6, "seq": "AGATGAGATCCTCGGC", "target_seq": "GCCGAGGATCTCATCT"}, {"duplex_mfe": -36.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.761, "self_mfe": -1.0, "seq": "GCGGTGGCCAGATGAGAT", "target_seq": "ATCTCATCTGGCCACCGC"}, {"duplex_mfe": -36.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.761, "self_mfe": -1.0, "seq": "GCGGTGGCCAGATGAGAT", "target_seq": "ATCTCATCTGGCCACCGC"}, {"duplex_mfe": -34.6, "flags": "", "gc": 61.1, "length": 18, "quality": 1.75, "self_mfe": 0.0, "seq": "CTCTTCCAGAACGCGGTG", "target_seq": "CACCGCGTTCTGGAAGAG"}, {"duplex_mfe": -40.5, "flags": "", "gc": 60.0, "length": 20, "quality": 1.745, "self_mfe": -1.3, "seq": "AACGCGGTGGCCAGATGAGA", "target_seq": "TCTCATCTGGCCACCGCGTT"}, {"duplex_mfe": -35.4, "flags": "", "gc": 61.1, "length": 18, "quality": 1.734, "self_mfe": -0.6, "seq": "CAGATGAGATCCTCGGCG", "target_seq": "CGCCGAGGATCTCATCTG"}, {"duplex_mfe": -29.6, "flags": "", "gc": 56.2, "length": 16, "quality": 1.715, "self_mfe": -0.6, "seq": "CCAGATGAGATCCTCG", "target_seq": "CGAGGATCTCATCTGG"}, {"duplex_mfe": -29.6, "flags": "", "gc": 56.2, "length": 16, "quality": 1.715, "self_mfe": -0.6, "seq": "CCAGATGAGATCCTCG", "target_seq": "CGAGGATCTCATCTGG"}, {"duplex_mfe": -41.9, "flags": "", "gc": 65.0, "length": 20, "quality": 1.715, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCACCGCG"}, {"duplex_mfe": -41.9, "flags": "", "gc": 65.0, "length": 20, "quality": 1.715, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGAGATC", "target_seq": "GATCTCATCTGGCCACCGCG"}, {"duplex_mfe": -42.0, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.5, "seq": "TCTTCCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGGAAGA"}, {"duplex_mfe": -41.2, "flags": "", "gc": 65.0, "length": 20, "quality": 1.7, "self_mfe": -1.1, "seq": "CCTCTTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAAGAGG"}, {"duplex_mfe": -41.8, "flags": "", "gc": 65.0, "length": 20, "quality": 1.69, "self_mfe": -1.5, "seq": "TTCCAGAACGCGGTGGCCAG", "target_seq": "CTGGCCACCGCGTTCTGGAA"}, {"duplex_mfe": -38.2, "flags": "", "gc": 66.7, "length": 18, "quality": 1.689, "self_mfe": -1.5, "seq": "TCCAGAACGCGGTGGCCA", "target_seq": "TGGCCACCGCGTTCTGGA"}, {"duplex_mfe": -37.7, "flags": "", "gc": 66.7, "length": 18, "quality": 1.681, "self_mfe": -1.3, "seq": "ACGCGGTGGCCAGATGAG", "target_seq": "CTCATCTGGCCACCGCGT"}, {"duplex_mfe": -33.4, "flags": "", "gc": 68.8, "length": 16, "quality": 1.632, "self_mfe": -1.3, "seq": "CGCGGTGGCCAGATGA", "target_seq": "TCATCTGGCCACCGCG"}, {"duplex_mfe": -30.9, "flags": "", "gc": 62.5, "length": 16, "quality": 1.621, "self_mfe": -1.1, "seq": "TTCCAGAACGCGGTGG", "target_seq": "CCACCGCGTTCTGGAA"}, {"duplex_mfe": -36.8, "flags": "", "gc": 66.7, "length": 18, "quality": 1.611, "self_mfe": -1.5, "seq": "CTTCCAGAACGCGGTGGC", "target_seq": "GCCACCGCGTTCTGGAAG"}, {"duplex_mfe": -43.0, "flags": "", "gc": 65.0, "length": 20, "quality": 1.59, "self_mfe": -3.1, "seq": "GGCCAGATGAGATCCTCGGC", "target_seq": "GCCGAGGATCTCATCTGGCC"}, {"duplex_mfe": -43.0, "flags": "", "gc": 65.0, "length": 20, "quality": 1.59, "self_mfe": -3.1, "seq": "GGCCAGATGAGATCCTCGGC", "target_seq": "GCCGAGGATCTCATCTGGCC"}, {"duplex_mfe": -34.7, "flags": "", "gc": 75.0, "length": 16, "quality": 1.579, "self_mfe": -1.4, "seq": "CCAGAACGCGGTGGCC", "target_seq": "GGCCACCGCGTTCTGG"}], "cds_control_sum": 1436.0, "codon_strength": 0.5, "composite_score": 6.3, "conservation": {"uAUG_window": {"coords": "chr17:17724021-17724051", "phyloP": 1.454}}, "designability": {"clean": 38, "score": 1.0, "total": 38}, "id": "CTG@344", "kozak": 0, "lights": {"canonical": "green", "conservation": "green", "designability": "green", "initiation": "yellow", "riboseq": "yellow"}, "notes": "near-cognate CTG, 2.13x Ribo-seq enrichment", "rank": 3, "refseq": "", "ribo": {"enrichment": 2.13, "max": 9.1, "mean": 9.1, "region": "chr17:17724006-17724066", "sum": 19.38}, "slug": "nc-CTG-344", "source_quality": "canonical UTR scan", "start_codon": "CTG", "stop_pos": 484, "target_type": "near_cognate_uORF", "transcript_id": "ENST00000353383", "transcript_name": "RAI1-201", "triage_verdict": "canonical_utr", "uaug_genomic": 17724036, "uaug_pos": 344, "ucsc_link": "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38\u0026position=chr17:17723821-17724251", "utr_gc": 0, "utr_len": 484};
+
+// Ribo-seq chart
+new Chart(document.getElementById('ribo-chart'), {
+  type: 'bar',
+  data: {
+    labels: ['This target', 'CDS start (control)', 'Intron (control)'],
+    datasets: [{
+      data: [target.ribo.sum, target.cds_control_sum, 0],
+      backgroundColor: ['#3b82f6', '#16a34a', '#9ca3af'],
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `Sum: ${ctx.raw}` } }
+    },
+    scales: { x: { beginAtZero: true, title: { display: true, text: 'Ribosome footprint sum' } } }
+  }
+});
+
+// Conservation chart
+const consLabels = [];
+const consValues = [];
+const consColors = [];
+for (const [rtype, info] of Object.entries(target.conservation)) {
+  consLabels.push(rtype.replace(/_/g, ' '));
+  consValues.push(info.phyloP || 0);
+  consColors.push(rtype === 'uAUG_window' ? '#7c3aed' : rtype === 'uORF_body' ? '#a78bfa' : '#c4b5fd');
+}
+new Chart(document.getElementById('cons-chart'), {
+  type: 'bar',
+  data: {
+    labels: consLabels,
+    datasets: [{ data: consValues, backgroundColor: consColors }]
+  },
+  options: {
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `phyloP: ${ctx.raw.toFixed(3)}` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Mean phyloP score' } },
+      x: { ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// UTR track SVG
+(function() {
+  const container = document.getElementById('utr-track');
+  const w = 760, h = 120, pad = 40;
+  const utrLen = target.utr_len;
+  const scale = (w - 2*pad) / utrLen;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svg.setAttribute('width', '100%');
+  svg.style.maxWidth = w + 'px';
+
+  // Background
+  const bg = rect(pad, 40, (w-2*pad), 16, '#e5e7eb');
+  svg.appendChild(bg);
+
+  // uORF body
+  const bodyStart = target.uaug_pos * scale + pad;
+  const bodyEnd = target.stop_pos * scale + pad;
+  svg.appendChild(rect(bodyStart, 36, bodyEnd - bodyStart, 24, 'rgba(239,68,68,0.2)', '1px', '#ef4444'));
+
+  // ASO window
+  const asoStart = Math.max(0, target.uaug_pos - 15) * scale + pad;
+  const asoEnd = Math.min(utrLen, target.uaug_pos + 15) * scale + pad;
+  svg.appendChild(rect(asoStart, 32, asoEnd - asoStart, 32, 'rgba(59,130,246,0.15)', '2px', '#3b82f6'));
+
+  // uAUG marker
+  const augX = target.uaug_pos * scale + pad;
+  const tri = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  tri.setAttribute('points', `${augX-6},32 ${augX+6},32 ${augX},22`);
+  tri.setAttribute('fill', '#ef4444');
+  svg.appendChild(tri);
+
+  // Labels
+  svg.appendChild(text(augX, 18, 'uAUG', '11px', '#ef4444', 'middle'));
+  svg.appendChild(text((asoStart+asoEnd)/2, 80, 'ASO window', '10px', '#3b82f6', 'middle'));
+
+  // Scale bar
+  svg.appendChild(line(pad, 70, w-pad, 70, '#999'));
+  svg.appendChild(text(pad, 90, '0', '10px', '#999'));
+  svg.appendChild(text(w-pad, 90, utrLen + ' bp', '10px', '#999', 'end'));
+  svg.appendChild(text((w)/2, 105, "5' UTR of " + target.transcript_name, '11px', '#666', 'middle'));
+
+  container.appendChild(svg);
+
+  function rect(x,y,w,h,fill,sw,stroke) {
+    const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('x',x); r.setAttribute('y',y);
+    r.setAttribute('width',Math.max(0,w)); r.setAttribute('height',h);
+    r.setAttribute('fill',fill); r.setAttribute('rx','3');
+    if(sw){r.setAttribute('stroke-width',sw);r.setAttribute('stroke',stroke);}
+    return r;
+  }
+  function text(x,y,t,sz,fill,anchor) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg','text');
+    el.setAttribute('x',x); el.setAttribute('y',y);
+    el.setAttribute('font-size',sz); el.setAttribute('fill',fill);
+    el.setAttribute('font-family','sans-serif');
+    if(anchor) el.setAttribute('text-anchor',anchor);
+    el.textContent = t; return el;
+  }
+  function line(x1,y1,x2,y2,stroke) {
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',x1); l.setAttribute('y1',y1);
+    l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+    l.setAttribute('stroke',stroke); l.setAttribute('stroke-width','1');
+    return l;
+  }
+})();
+</script>
+
+</body>
+</html>

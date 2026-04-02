@@ -1,0 +1,5 @@
+signal	signal_type	utr_position	genomic_position	dist_from_cds_end	dist_from_utr_end	is_near_end
+AATATA	variant	1283	17811265	1283	189	False
+AGTAAA	variant	1397	17811379	1397	75	False
+AAAAAG	variant	1435	17811417	1435	37	True
+AATAAA	canonical (most common)	1443	17811425	1443	29	True

@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block nav_home %}class="active"{% endblock %}
+
+{% block header %}
+<div class="page-header">
+  <div class="container">
+    <h1>RAI1 ASO Targets for Smith-Magenis Syndrome</h1>
+    <p class="subtitle">Computational evidence map for antisense oligonucleotide target selection &mdash; a research planning resource, not a drug design tool</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="card" style="border-left:4px solid var(--accent); margin-bottom:24px;">
+    <h3>What this portal does</h3>
+    <p>This site aggregates public genomic evidence to help researchers evaluate <strong>all computationally tractable ASO strategies</strong> for RAI1 upregulation in Smith-Magenis Syndrome: uORF blocking (AUG and near-cognate), RNA structure disruption, miRNA site blocking, splice switching, natural antisense targeting, and G-quadruplex resolution. It answers: "Which mechanisms have evidence, which don't, and where should experiments focus?"</p>
+    <h3 style="margin-top:12px;">What this portal does NOT do</h3>
+    <p>This is not a drug design tool. All evidence is computational. Experimental validation, off-target analysis, and ASO chemistry optimization are required before any therapeutic use.</p>
+    <h3 style="margin-top:12px;">Key caveats</h3>
+    <ul style="font-size:13px; color:var(--text-muted); padding-left:20px; line-height:1.8;">
+      <li><strong>Ribo-seq data is aggregate:</strong> Ribosome profiling signal comes from the <a href="https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=gwipsvizRiboseq" target="_blank" rel="noopener">GWIPS-viz aggregate track</a>, pooling multiple studies across cell types. Neuron-specific Ribo-seq could show a different translational landscape.</li>
+      <li><strong>Haploinsufficiency ceiling:</strong> SMS patients have one deleted RAI1 copy. The remaining allele must be upregulated from ~50% to ~70-80% of normal. uORF derepression rarely achieves full derepression, so the therapeutic window may be narrow.</li>
+      <li><strong>Targets scored similarly are effectively tied:</strong> Given input uncertainty, targets within ~1 point of each other should be considered equivalent. The ranking suggests priority, not definitive ordering.</li>
+      <li><strong>All coordinates are GRCh38/hg38.</strong></li>
+    </ul>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">See <a href="methodology.html#limitations">full limitations</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="summary-ribbon">
+    <div class="stat-box">
+      <div class="value">{{ targets|length }}</div>
+      <div class="label">ranked uORF targets (AUG + near-cognate)</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">{{ targets|selectattr('target_type', 'equalto', 'AUG_uORF')|list|length }}</div>
+      <div class="label">AUG-initiated uORFs</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">{{ targets|selectattr('target_type', 'equalto', 'near_cognate_uORF')|list|length }}</div>
+      <div class="label">near-cognate uORFs (Ribo-seq validated)</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">8</div>
+      <div class="label">mechanisms evaluated (4 viable, 4 ruled out)</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ranked Targets</h2>
+  <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">
+    Scored by 5 components: canonical membership (wt 3), Ribo-seq evidence (wt 2), start codon strength (wt 1), conservation (wt 1), ASO designability (wt 1).
+    <strong>Note:</strong> Ribo-seq is measured differently for AUG (absolute sum vs CDS control) and near-cognate (peak enrichment over local background) targets. These metrics are normalized but not directly comparable.
+    Targets within ~1 point are effectively equivalent given input uncertainty.
+  </p>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All ({{ targets|length }})</button>
+    <button class="filter-btn" data-filter="aug">AUG only ({{ targets|selectattr('target_type', 'equalto', 'AUG_uORF')|list|length }})</button>
+    <button class="filter-btn" data-filter="nc">Near-cognate only ({{ targets|selectattr('target_type', 'equalto', 'near_cognate_uORF')|list|length }})</button>
+    <button class="filter-btn" data-filter="top5">Top 5</button>
+    <button class="filter-btn" data-filter="druggable">Druggable (has clean ASOs)</button>
+    <label style="margin-left:auto; font-size:13px; color:var(--text-muted);">
+      Sort:
+      <select id="sort-select" style="padding:4px 8px; border-radius:4px; border:1px solid var(--border);">
+        <option value="rank">By rank (composite)</option>
+        <option value="initiation">By start codon strength</option>
+        <option value="ribo">By Ribo-seq signal</option>
+        <option value="conservation">By conservation</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="target-list">
+    {% for t in targets %}
+    <div class="card target-card"
+         data-type="{{ t.target_type }}"
+         data-verdict="{{ t.triage_verdict }}"
+         data-ribo="{{ t.ribo.sum }}"
+         data-initiation="{{ t.codon_strength }}"
+         data-conservation="{{ t.conservation.get('uAUG_window', {}).get('phyloP', 0) or 0 }}"
+         data-rank="{{ t.rank }}"
+         data-composite="{{ t.composite_score }}"
+         data-clean-asos="{{ t.designability.clean }}">
+      <div class="rank {% if t.triage_verdict == 'canonical' %}canonical{% endif %}">{{ t.rank }}</div>
+      <div class="info">
+        <h3>
+          <a href="target/{{ t.slug }}.html">{{ t.id }}</a>
+          {% if t.target_type == 'near_cognate_uORF' %}
+            <span class="badge badge-shared">{{ t.start_codon }}</span>
+          {% endif %}
+          {% if t.triage_verdict == 'canonical' %}
+            <span class="badge badge-canonical">CANONICAL</span>
+          {% elif t.triage_verdict == 'canonical_utr' %}
+            <span class="badge badge-canonical">IN CANONICAL UTR</span>
+          {% elif t.triage_verdict == 'shared_with_canonical' %}
+            <span class="badge badge-shared">SHARED</span>
+          {% else %}
+            <span class="badge badge-noncanonical">non-canonical</span>
+          {% endif %}
+        </h3>
+        <div class="meta">
+          {{ t.transcript_name }} &middot; {{ t.start_codon }} &middot; {{ t.aa_len }} aa &middot;
+          chr17:{{ '{:,}'.format(t.uaug_genomic) }} (hg38)
+          {% if t.target_type == 'near_cognate_uORF' %} &middot; {{ t.ribo.get('enrichment', '') }}x enrichment{% endif %}
+          {% if t.refseq %} &middot; {{ t.refseq }}{% endif %}
+        </div>
+        <div class="lights">
+          <span class="light {{ t.lights.canonical }}" title="Canonical: {{ t.triage_verdict }}" aria-label="Canonical: {{ t.triage_verdict }}">C</span>
+          <span class="light-label">Can</span>
+          <span class="light {{ t.lights.riboseq }}" title="Ribo-seq: {{ t.ribo.sum }}" aria-label="Ribo-seq">R</span>
+          <span class="light-label">Ribo</span>
+          <span class="light {{ t.lights.conservation }}" title="phyloP: {{ t.conservation.get('uAUG_window', {}).get('phyloP', 'N/A') }}" aria-label="Conservation">P</span>
+          <span class="light-label">Cons</span>
+          <span class="light {{ t.lights.initiation }}" title="Start codon: {{ t.start_codon }} ({{ t.codon_strength }})" aria-label="Initiation strength">S</span>
+          <span class="light-label">Start</span>
+          <span class="light {{ t.lights.designability }}" title="ASO designability: {{ t.designability.clean }}/{{ t.designability.total }} clean" aria-label="Designability">D</span>
+          <span class="light-label">Design</span>
+        </div>
+        {% if t.best_asos %}
+        <div style="font-size:12px; margin-top:4px;">
+          <span style="color:var(--text-muted);">Best ASO:</span>
+          <code style="font-size:11px; background:var(--bg); padding:2px 6px; border-radius:3px;">{{ t.best_asos[0].seq }}</code>
+          <span style="color:var(--text-muted);">({{ t.best_asos[0].length }}nt, Q={{ t.best_asos[0].quality }}{% if t.best_asos[0].flags %}, <span style="color:var(--danger-red);">{{ t.best_asos[0].flags }}</span>{% endif %})</span>
+        </div>
+        {% elif t.designability.total > 0 and t.designability.clean == 0 %}
+        <div style="font-size:12px; margin-top:4px; color:var(--danger-red);">
+          No clean ASO candidates for this position ({{ t.designability.total }} all flagged)
+        </div>
+        {% endif %}
+        <div style="max-width:300px;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;">
+            <span>Composite score</span>
+            <span class="score-value">{{ t.composite_score }}/10</span>
+          </div>
+          <div class="score-bar"><div class="fill" style="width:{{ (t.composite_score / 10 * 100)|round }}%"></div></div>
+        </div>
+        {% if t.notes %}<div style="font-size:12px; color:var(--text-muted); margin-top:4px;">{{ t.notes }}</div>{% endif %}
+      </div>
+      <div class="actions">
+        <a href="target/{{ t.slug }}.html" class="btn btn-primary btn-sm">Details</a>
+        <a href="{{ t.ucsc_link }}" target="_blank" rel="noopener" class="btn btn-sm btn-external">UCSC</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% if structure %}
+<section>
+  <h2>5&prime;UTR Secondary Structure Hotspots</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Stable RNA hairpins in the 5&prime;UTR slow ribosome scanning and reduce translation.
+    ASOs that melt these structures can increase protein output, complementary to uORF blocking.
+    Windows scored by minimum free energy (MFE) using ViennaRNA. More negative = more stable = better ASO target.
+  </p>
+  <div class="card">
+    <div class="chart-container" style="max-width:700px; margin-bottom:16px;">
+      <canvas id="structure-chart"></canvas>
+    </div>
+    <table>
+      <tr><th>Rank</th><th>UTR Position</th><th>MFE (kcal/mol)</th><th>MFE/nt</th><th>GC%</th><th>UCSC</th></tr>
+      {% for s in structure %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ s.window_start }}-{{ s.window_end }}</td>
+        <td><strong>{{ s.mfe }}</strong></td>
+        <td>{{ s.mfe_per_nt }}</td>
+        <td>{{ s.gc_content }}%</td>
+        <td><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr17:{{ s.genomic_start - 100 }}-{{ s.genomic_end + 100 }}" target="_blank" rel="noopener" class="btn btn-sm btn-external">Open</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+      The most stable region (pos 190-250, MFE = {{ structure[0].mfe }} kcal/mol) overlaps with the canonical uORF at position 262.
+      This overlap has two implications: (1) the stable structure may slow ribosome scanning, increasing the probability that ribosomes engage the uORF rather than reading through to the main AUG, making this uORF more repressive than its weak Kozak (1/3) would suggest;
+      (2) an ASO targeting this region could simultaneously disrupt the structure AND block the uORF start codon, a dual-mechanism approach.
+      Importantly, structure disruption works regardless of whether translation is cap-dependent or IRES-mediated, making it a safer bet than uORF blocking alone given the IRES risk flagged below.
+    </p>
+  </div>
+</section>
+{% endif %}
+
+{% if mirna %}
+<section>
+  <h2>miRNA Binding Sites (3&prime;UTR)</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Conserved miRNA binding sites in the RAI1 3&prime;UTR that may repress mRNA stability or translation.
+    Blocking these sites with ASOs could stabilize RAI1 mRNA, stacking with 5&prime;UTR-based upregulation.
+    Data from <a href="https://www.targetscan.org" target="_blank" rel="noopener">TargetScan 8.0</a>.
+  </p>
+  <div class="card">
+    <table>
+      <tr><th>miRNA</th><th>Seed family</th><th>Context++ score</th><th>Conserved sites</th><th>8mer sites</th><th>Aggregate PCT</th></tr>
+      {% for m in mirna %}
+      <tr>
+        <td><strong>{{ m.representative }}</strong></td>
+        <td style="font-family:var(--mono); font-size:12px;">{{ m.mirna_family }}</td>
+        <td>{{ m.context_score }}</td>
+        <td>{{ m.conserved_sites }}</td>
+        <td>{{ m.conserved_8mer }}</td>
+        <td>{{ m.aggregate_pct }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% if mirna|length <= 6 %}
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px; padding:8px; background:var(--bg); border-radius:4px;">
+      RAI1 has a relatively short 3&prime;UTR (1,472 nt) with only {{ mirna|length }} conserved miRNA families.
+      The strongest ({{ mirna[0].representative }}, context++ = {{ mirna[0].context_score }}) has moderate predicted repression.
+      <strong>Tissue caveat:</strong> miR-144-3p is primarily expressed in hematopoietic cells, not neurons. Its functional relevance in the brain (the target tissue for SMS) is uncertain.
+      Additionally, blocking a miRNA site with a steric blocker requires competing with Argonaute-loaded RISC, a fundamentally different pharmacological challenge than 5&prime;UTR uORF blocking.
+      miRNA site blocking is a weak strategy for RAI1.
+    </p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if utr3_struct and utr3_struct.top %}
+<section>
+  <h2>3&prime;UTR Secondary Structure</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Stable structures in the 3&prime;UTR can affect mRNA stability, localization, and polyadenylation.
+    ASOs disrupting these structures could alter mRNA half-life. Computed with ViennaRNA (80 bp windows).
+  </p>
+  <div class="card">
+    <div class="chart-container" style="max-width:700px; margin-bottom:16px;">
+      <canvas id="utr3-structure-chart"></canvas>
+    </div>
+    <table>
+      <tr><th>Rank</th><th>3&prime;UTR Position</th><th>MFE (kcal/mol)</th><th>MFE/nt</th><th>GC%</th></tr>
+      {% for s in utr3_struct.top %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ s.pos }}</td>
+        <td><strong>{{ s.mfe }}</strong></td>
+        <td>{{ s.mfe_per_nt }}</td>
+        <td>{{ s.gc }}%</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endif %}
+
+{% if rbp and rbp.utr_total > 0 %}
+<section>
+  <h2>RNA-Binding Protein Sites (ENCODE)</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Transcription factor and RBP binding sites in RAI1 UTR regions from ENCODE ChIP-seq clusters.
+    {{ rbp.utr_total }} sites in UTR regions out of {{ rbp.total }} total across the gene.
+  </p>
+  <div class="evidence-grid">
+    {% if rbp.top_5utr %}
+    <div class="evidence-panel">
+      <h4>5&prime;UTR / Promoter Region</h4>
+      <table>
+        <tr><th>Factor</th><th>Sites</th><th>Score</th></tr>
+        {% for r in rbp.top_5utr %}
+        <tr><td>{{ r.name }}</td><td>{{ r.count }}</td><td>{{ r.score }}</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+    {% endif %}
+    {% if rbp.top_3utr %}
+    <div class="evidence-panel">
+      <h4>3&prime;UTR Region</h4>
+      <table>
+        <tr><th>Factor</th><th>Sites</th><th>Score</th></tr>
+        {% for r in rbp.top_3utr %}
+        <tr><td>{{ r.name }}</td><td>{{ r.count }}</td><td>{{ r.score }}</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if polya %}
+<section>
+  <h2>Polyadenylation Signals</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Canonical and variant polyadenylation signals in the RAI1 3&prime;UTR.
+    Alternative polyA site usage can produce shorter 3&prime;UTR isoforms that escape miRNA regulation.
+  </p>
+  <div class="card">
+    <table>
+      <tr><th>Signal</th><th>Type</th><th>3&prime;UTR Position</th><th>Dist. from End</th><th>Status</th></tr>
+      {% for p in polya %}
+      <tr>
+        <td style="font-family:var(--mono);">{{ p.signal }}</td>
+        <td>{{ p.type }}</td>
+        <td>{{ p.utr_pos }}</td>
+        <td>{{ p.dist_from_end }} bp</td>
+        <td>{% if p.active %}<span class="badge badge-canonical">LIKELY ACTIVE</span>{% else %}<span style="color:var(--text-muted);">upstream</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endif %}
+
+{% if not g4 %}
+<section>
+  <div class="nat-sidebar">
+    <h3>G-Quadruplex Scan: Negative</h3>
+    <p>No G-quadruplex motifs (G3+N1-7G3+N1-7G3+N1-7G3+) found in the canonical 5&prime;UTR despite 78% GC content.
+    The GC richness is distributed, not in clustered G-runs. G4-resolving ASOs are not applicable for RAI1.</p>
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <div class="card" style="border-left:4px solid var(--warning-yellow); background:#fffbeb;">
+    <h3 style="color:var(--warning-yellow);">IRES Risk Assessment: High (5/5 features)</h3>
+    <p>The RAI1 5&prime;UTR scores 5/5 on IRES-associated features: long leader (484 bp), high GC (78%), highly structured (MFE -0.6/nt), polypyrimidine tract at position 210, and 262 nt cap-to-AUG distance. If RAI1 uses cap-independent (IRES-mediated) translation, uORF blocking would be ineffective because ribosomes would bypass uORFs entirely.</p>
+    <p style="margin-top:8px;"><strong>However:</strong> No RAI1 IRES activity has been reported (zero publications). The same features are also consistent with a difficult-to-scan UTR where uORFs have maximum regulatory impact. The Ribo-seq signal at the canonical uORF (68% of CDS levels) is more consistent with cap-dependent scanning than IRES-mediated internal entry.</p>
+    <p style="margin-top:8px;"><strong>To resolve:</strong> Include a bicistronic reporter construct in the Phase 1 validation. Place the RAI1 5&prime;UTR between two reporter genes. If downstream reporter is expressed without a functional upstream cap, IRES activity is confirmed and the uORF strategy should be deprioritized in favor of structure-disruption ASOs (which work regardless of translation mechanism).</p>
+  </div>
+</section>
+
+{% if nmd %}
+<section>
+  <h2>Splice / NMD Analysis</h2>
+  <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">
+    Analysis of RAI1 transcript isoforms for nonsense-mediated decay (NMD) features and poison exons.
+    If a transcript has a premature termination codon >50 nt upstream of the last exon junction, it is an NMD substrate.
+    Splice-switching ASOs could redirect splicing away from these nonproductive isoforms.
+  </p>
+  <div class="card">
+    <table>
+      <tr>
+        <th>Transcript</th><th>Name</th><th>Biotype</th><th>Exons</th>
+        <th>NMD?</th><th>Unique Exons</th><th>Potential</th>
+      </tr>
+      {% for n in nmd %}
+      <tr {% if n.is_canonical %}style="font-weight:600;"{% endif %}>
+        <td>{{ n.transcript_id }}</td>
+        <td>{{ n.display_name }}</td>
+        <td>{{ n.biotype }}</td>
+        <td>{{ n.n_exons }}</td>
+        <td>{% if n.ptc_triggers_nmd %}<span class="badge badge-canonical">YES</span>{% else %}No{% endif %}</td>
+        <td>{{ n.n_unique_exons }}</td>
+        <td>
+          {% if n.nmd_potential == 'high' %}<span class="badge badge-canonical">HIGH</span>
+          {% elif n.nmd_potential == 'medium' %}<span class="badge badge-shared">MEDIUM</span>
+          {% else %}<span style="color:var(--text-muted);">none</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% set nmd_high = nmd|selectattr('nmd_potential', 'equalto', 'high')|list %}
+    {% if not nmd_high %}
+    <p style="font-size:13px; color:var(--text-muted); margin-top:12px; padding:8px; background:var(--bg); border-radius:4px;">
+      No classic poison exons detected (no transcripts with PTCs >50 nt upstream of the last exon-exon junction).
+      Six isoforms have unique exons relative to the canonical transcript, but their stop codons are in the last exon, so they are not NMD substrates by the standard rule.
+      Splice-switching ASOs are not a primary recommendation for RAI1.
+    </p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <div class="nat-sidebar">
+    <h3>NAT Lever: RAI1-AS1</h3>
+    <p>RAI1-AS1 overlap scored <span class="score">0.5/4.5</span> (gene body only, no promoter or exon overlap).
+    Not recommended as first target. <a href="methodology.html">See methodology</a> for scoring details.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Download Data</h2>
+  <div class="download-grid">
+    {% for f in ['rai1_uorf_triage.tsv', 'rai1_utr_candidates.tsv', 'rai1_riboseq_check.tsv', 'rai1_utr_conservation.tsv', 'rai1_near_cognate_uorfs.tsv', 'rai1_aso_candidates.tsv', 'rai1_utr_structure.tsv', 'rai1_3utr_structure.tsv', 'rai1_mirna_targets.tsv', 'rai1_rbp_sites.tsv', 'rai1_polya.tsv', 'rai1_nmd_analysis.tsv', 'rai1_transcripts.tsv', 'rai1as1_transcripts.tsv', 'rai1_as1_overlap.tsv', 'rai1_as1_expression.tsv', 'rai1_eqtl_sqtl_summary.tsv'] %}
+    <div class="download-item"><a href="downloads/{{ f }}">{{ f }}</a></div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Filter and sort
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    const cards = [...document.querySelectorAll('.target-card')];
+    cards.forEach((card, i) => {
+      if (filter === 'all') card.style.display = '';
+      else if (filter === 'aug') card.style.display = card.dataset.type === 'AUG_uORF' ? '' : 'none';
+      else if (filter === 'nc') card.style.display = card.dataset.type === 'near_cognate_uORF' ? '' : 'none';
+      else if (filter === 'top5') card.style.display = parseInt(card.dataset.rank) <= 5 ? '' : 'none';
+      else if (filter === 'druggable') card.style.display = parseInt(card.dataset.cleanAsos) > 0 ? '' : 'none';
+    });
+  });
+});
+document.getElementById('sort-select').addEventListener('change', e => {
+  const list = document.getElementById('target-list');
+  const cards = [...list.querySelectorAll('.target-card')];
+  const key = e.target.value;
+  cards.sort((a, b) => {
+    if (key === 'rank') return parseFloat(a.dataset.rank) - parseFloat(b.dataset.rank);
+    if (key === 'initiation') return parseFloat(b.dataset.initiation) - parseFloat(a.dataset.initiation);
+    if (key === 'ribo') return parseFloat(b.dataset.ribo) - parseFloat(a.dataset.ribo);
+    if (key === 'conservation') return parseFloat(b.dataset.conservation) - parseFloat(a.dataset.conservation);
+  });
+  cards.forEach(c => list.appendChild(c));
+});
+
+// Structure profile chart
+{% if structure_profile %}
+(function() {
+  const canvas = document.getElementById('structure-chart');
+  if (!canvas) return;
+  const profile = {{ structure_profile_json }};
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: profile.map(d => d.pos),
+      datasets: [{
+        label: 'MFE (kcal/mol)',
+        data: profile.map(d => d.mfe),
+        borderColor: '#7c3aed',
+        backgroundColor: 'rgba(124,58,237,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: "5' UTR position (bp)" }, ticks: { maxTicksLimit: 10 } },
+        y: { title: { display: true, text: 'MFE (kcal/mol)' }, reverse: true }
+      }
+    }
+  });
+})();
+{% endif %}
+
+// 3'UTR structure chart
+{% if utr3_struct and utr3_struct.profile %}
+(function() {
+  const canvas = document.getElementById('utr3-structure-chart');
+  if (!canvas) return;
+  const profile = {{ utr3_profile_json }};
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: profile.map(d => d.pos),
+      datasets: [{
+        label: 'MFE (kcal/mol)',
+        data: profile.map(d => d.mfe),
+        borderColor: '#dc2626',
+        backgroundColor: 'rgba(220,38,38,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false }, title: { display: true, text: "3' UTR Structure Stability Profile" } },
+      scales: {
+        x: { title: { display: true, text: "3' UTR position (bp)" }, ticks: { maxTicksLimit: 10 } },
+        y: { title: { display: true, text: 'MFE (kcal/mol)' }, reverse: true }
+      }
+    }
+  });
+})();
+{% endif %}
+</script>
+{% endblock %}

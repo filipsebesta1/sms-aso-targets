@@ -1,0 +1,62 @@
+[
+  {
+    "family": "UACAGUA",
+    "representative": "gga-miR-144-3p",
+    "score": -0.473,
+    "conserved_sites": 2,
+    "conserved_8mer": 0,
+    "conserved_7mer_m8": 0,
+    "total_context": -0.473,
+    "aggregate_pct": 0.515
+  },
+  {
+    "family": "AUAAUAC",
+    "representative": "mml-miR-369-3p",
+    "score": -0.061,
+    "conserved_sites": 1,
+    "conserved_8mer": 1,
+    "conserved_7mer_m8": 0,
+    "total_context": -0.068,
+    "aggregate_pct": 0.0
+  },
+  {
+    "family": "AUAUAAC",
+    "representative": "mmu-miR-344d-3p",
+    "score": -0.027,
+    "conserved_sites": 1,
+    "conserved_8mer": 1,
+    "conserved_7mer_m8": 0,
+    "total_context": -0.03,
+    "aggregate_pct": 0.0
+  },
+  {
+    "family": "UAAUACA",
+    "representative": "mmu-miR-374c-5p",
+    "score": -0.018,
+    "conserved_sites": 1,
+    "conserved_8mer": 0,
+    "conserved_7mer_m8": 1,
+    "total_context": -0.02,
+    "aggregate_pct": 0.0
+  },
+  {
+    "family": "UAUAAUA",
+    "representative": "mmu-miR-374b-5p",
+    "score": -0.018,
+    "conserved_sites": 1,
+    "conserved_8mer": 0,
+    "conserved_7mer_m8": 1,
+    "total_context": -0.02,
+    "aggregate_pct": 0.0
+  },
+  {
+    "family": "UUAUUGA",
+    "representative": "mmu-miR-325-3p",
+    "score": -0.016,
+    "conserved_sites": 1,
+    "conserved_8mer": 1,
+    "conserved_7mer_m8": 0,
+    "total_context": -0.03,
+    "aggregate_pct": 0.0
+  }
+]

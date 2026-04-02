@@ -1,0 +1,7 @@
+mirna_family	representative_mirna	context_score	conserved_sites	conserved_8mer	aggregate_pct	target_type
+UACAGUA	gga-miR-144-3p	-0.473	2	0	0.515	miRNA_site
+AUAAUAC	mml-miR-369-3p	-0.061	1	1	0.0	miRNA_site
+AUAUAAC	mmu-miR-344d-3p	-0.027	1	1	0.0	miRNA_site
+UAAUACA	mmu-miR-374c-5p	-0.018	1	0	0.0	miRNA_site
+UAUAAUA	mmu-miR-374b-5p	-0.018	1	0	0.0	miRNA_site
+UUAUUGA	mmu-miR-325-3p	-0.016	1	1	0.0	miRNA_site
