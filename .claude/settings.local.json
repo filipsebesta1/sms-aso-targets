@@ -52,7 +52,9 @@
       "Bash(git commit -m \"Add mobile responsive CSS, GitHub repo link, deploy to Firebase:*)",
       "Bash(git push:*)",
       "Bash(git commit -m \"Add ranked targets table to README:*)",
-      "Bash(git commit -m \"Move GitHub link to nav bar with icon, remove separate section:*)"
+      "Bash(git commit -m \"Move GitHub link to nav bar with icon, remove separate section:*)",
+      "Bash(git commit -m \"Remove findings from README, keep it mechanism-agnostic:*)",
+      "Bash(git commit -m \"Add unified All Viable Targets table across all mechanisms:*)"
     ]
   }
 }
