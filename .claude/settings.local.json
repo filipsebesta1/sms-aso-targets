@@ -50,7 +50,9 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"Initial commit: RAI1 ASO target prioritization portal:*)",
       "Bash(git commit -m \"Add mobile responsive CSS, GitHub repo link, deploy to Firebase:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git commit -m \"Add ranked targets table to README:*)",
+      "Bash(git commit -m \"Move GitHub link to nav bar with icon, remove separate section:*)"
     ]
   }
 }
