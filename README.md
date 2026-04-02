@@ -21,6 +21,25 @@ The pipeline queries public genomic databases (Ensembl, UCSC, GWIPS-viz, HPA, GT
 
 All targets are ranked on a unified 0-10 composite score incorporating canonical transcript membership, Ribo-seq evidence, start codon strength, evolutionary conservation, and ASO designability.
 
+### Ranked Targets
+
+| Rank | Target | Type | Score | Canonical | Ribo-seq | Conservation | Clean ASOs |
+|------|--------|------|-------|-----------|----------|-------------|------------|
+| 1 | ENST00000353383:262 | ATG | 6.4 | Yes (NM_030665.4) | sum=976 (68% of CDS) | phyloP 0.32 | 0/15 |
+| 2 | CTG@358 | near-cognate | 6.3 | canonical UTR | 2.57x enrichment | phyloP 1.58 | 11/15 |
+| 3 | CTG@344 | near-cognate | 6.3 | canonical UTR | 2.13x enrichment | phyloP 1.45 | 12/15 |
+| 4 | GTG@114 | near-cognate | 5.8 | canonical UTR | 3.57x enrichment | phyloP 0.29 | 15/15 |
+| 5 | ATC@342 | near-cognate | 5.8 | canonical UTR | 2.62x enrichment | phyloP 1.49 | 12/15 |
+| 6 | ACG@110 | near-cognate | 5.4 | canonical UTR | 3.06x enrichment | phyloP 0.28 | 15/15 |
+| 7 | CTG@96 | near-cognate | 5.2 | canonical UTR | 2.13x enrichment | phyloP 0.39 | 8/11 |
+| 8 | ATT@2 | near-cognate | 4.2 | canonical UTR | 2.60x enrichment | phyloP 0.65 | 0/13 |
+| 9 | ENST00000918590:144 | ATG | 3.2 | non-canonical | sum=29 | phyloP 2.82 | 10/16 |
+| 10 | ENST00000471135:217 | ATG | 2.3 | non-canonical | sum=34 | phyloP 0.08 | 12/15 |
+| 11 | ENST00000395774:18 | ATG | 1.5 | non-canonical | sum=19 | phyloP 0.72 | 11/13 |
+| 12 | ENST00000918590:89 | ATG | 1.4 | non-canonical | sum=11 | phyloP 1.85 | 0/11 |
+
+Key finding: the canonical AUG uORF (#1) has the strongest biological evidence but zero clean ASO candidates due to extreme GC content (78%). The near-cognate targets (#2-7) in the same canonical UTR offer better ASO designability and strong conservation.
+
 ## This is a research planning tool, not a drug design tool
 
 All evidence is computational. Experimental validation (reporter assays, ASO walks, off-target analysis) is required before any therapeutic use. See the [methodology page](https://sms-aso-targets.web.app/methodology.html) for scoring details and [limitations](https://sms-aso-targets.web.app/methodology.html#limitations).
